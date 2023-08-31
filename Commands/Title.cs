@@ -11,13 +11,13 @@ using UnityEngine;
 namespace RolePlay_Tools.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    public class Me : ICommand
+    public class Title : ICommand
     {
-        public string Command => "me";
+        public string Command => "title";
 
-        public string[] Aliases => new string[] { "rp-me" };
+        public string[] Aliases => new string[] { "title", "description", "desc" };
 
-        public string Description => Plugin.Instance.Config.MeCmdDesc;
+        public string Description => Plugin.Instance.Config.TitleCmdDesc;
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -30,25 +30,20 @@ namespace RolePlay_Tools.Commands
             }
             if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079)
             {
-                response = "You can't use this command as SCP-079!";
+                response = "U can't use that command as SCP-079!";
                 return false;
             }
             if (arguments.Count == 0)
             {
-                response = "Use: .me [text]";
+                response = "Use: .title [text]";
                 return false;
             }
 
             string text = string.Join(" ", arguments.Select(arg => arg.Trim()));
 
-            foreach (Player ply in Player.List)
-            {
-                if(Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.MeCommandRadius)
-                {
-                    ply.ShowHint($"<voffset=-500><color=yellow>{player.Nickname}:</color> <color=red>.me " + text + "</color></voffset>", Plugin.Instance.Config.HintDurationTime);
-                }
-            }
-            response = "Sent!";
+            player.CustomInfo = string.Empty;
+            player.CustomInfo = text;
+            response = "title set!";
             return true;
         }
     }

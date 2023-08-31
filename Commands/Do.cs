@@ -45,7 +45,7 @@ namespace RolePlay_Tools.Commands
             {
                 if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.DoCommandRadius)
                 {
-                    ply.ShowHint($"<color=yellow>{player.Nickname}:</color> <color=blue>.do " + text + "</color>", Plugin.Instance.Config.HintDurationTime);
+                    ply.ShowHint($"<voffset=-500><color=yellow>{player.Nickname}:</color> <color=blue>.do " + text + "</color></voffset>", Plugin.Instance.Config.HintDurationTime);
                 }
             }
             response = "Sent!";

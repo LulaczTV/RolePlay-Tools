@@ -48,7 +48,7 @@ namespace RolePlay_Tools.Commands
                 {
                     if(Vector3.Distance(ply.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        ply.ShowHint($"<color=yellow><b>{player.Nickname}</b>:</color> .try " + text + "\n<color=red>Unsuccessfully!</color>", Plugin.Instance.Config.HintDurationTime);
+                        ply.ShowHint($"<voffset=-500><color=yellow><b>{player.Nickname}</b>:</color> .try " + text + "\n<color=red>Unsuccessfully!</color></voffset>", Plugin.Instance.Config.HintDurationTime);
                     }
                 }
                 response = "<color=red>Unsuccessfully!";
@@ -59,7 +59,7 @@ namespace RolePlay_Tools.Commands
                 {
                     if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        ply.ShowHint($"<color=yellow><b>{player.Nickname}</b>:</color> .try " + text + "\n<color=green>Successfully!</color>", Plugin.Instance.Config.HintDurationTime);
+                        ply.ShowHint($"<voffset=-500><color=yellow><b>{player.Nickname}</b>:</color> .try " + text + "\n<color=green>Successfully!</color></voffset>", Plugin.Instance.Config.HintDurationTime);
                     }
                 }
                 response = "<color=green> Successfully!";

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandSystem.Commands.Console;
 using CommandSystem;
-using Exiled.API.Features;
+using PluginAPI.Core;
 using UnityEngine;
 
 namespace RolePlay_Tools.Commands
@@ -21,14 +21,21 @@ namespace RolePlay_Tools.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Player player = Player.Get(sender);
-
+#if EXILED
+            Exiled.API.Features.Player player = Exiled.API.Features.Player.Get(sender);
+#else
+            PluginAPI.Core.Player player = PluginAPI.Core.Player.Get(sender);
+#endif
             if (player == null)
             {
                 response = "Error!";
                 return false;
             }
+#if EXILED
             if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079)
+#else
+            if(player.Role == PlayerRoles.RoleTypeId.Scp079)
+#endif
             {
                 response = "You can't use this command as SCP-079!";
                 return false;
@@ -44,22 +51,30 @@ namespace RolePlay_Tools.Commands
 
             if(rand <= 50)
             {
-                foreach(Player ply in Player.List)
+#if EXILED
+                foreach (Exiled.API.Features.Player ply in Exiled.API.Features.Player.List)
+#else
+            foreach (PluginAPI.Core.Player ply in PluginAPI.Core.Player.GetPlayers())
+#endif
                 {
-                    if(Vector3.Distance(ply.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
+                    if (Vector3.Distance(ply.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        ply.ShowHint($"<voffset=-500><color=yellow><b>{player.Nickname}</b>:</color> .try " + text + "\n<color=red>Unsuccessfully!</color></voffset>", Plugin.Instance.Config.HintDurationTime);
+                        Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow><b>{player.Nickname}</b>:</color> .try {text}\n<color=red>Unsuccessfully!</color></voffset>");
                     }
                 }
                 response = "<color=red>Unsuccessfully!";
             }
             else
             {
-                foreach (Player ply in Player.List)
+#if EXILED
+                foreach (Exiled.API.Features.Player ply in Exiled.API.Features.Player.List)
+#else
+                foreach (PluginAPI.Core.Player ply in PluginAPI.Core.Player.GetPlayers())
+#endif
                 {
                     if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        ply.ShowHint($"<voffset=-500><color=yellow><b>{player.Nickname}</b>:</color> .try " + text + "\n<color=green>Successfully!</color></voffset>", Plugin.Instance.Config.HintDurationTime);
+                        Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow><b>{player.Nickname}</b>:</color> .try {text}\n<color=green>Successfully!</color></voffset>");
                     }
                 }
                 response = "<color=green> Successfully!";

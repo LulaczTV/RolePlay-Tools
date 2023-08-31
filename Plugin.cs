@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PluginAPI.Core.Attributes;
+using PluginAPI.Core;
+using PluginAPI.Enums;
 using Exiled.API.Features;
-using Exiled.API.Extensions;
-using Exiled.API.Interfaces;
-using Exiled.Events.EventArgs.Map;
-using Exiled.Events.Handlers;
+using UnityEngine;
 
 namespace RolePlay_Tools
 {
+#if EXILED
     public class Plugin : Plugin<Config>
+#else
+    public class Plugin
+#endif
     {
 
         public static Plugin Instance;
+        public readonly HintManager hintManager = new HintManager();
 
-
+#if EXILED
         public override string Name => "RolePlay Tools";
         public override string Author => "pan_andrzej";
-        public override Version Version => new Version(1, 0, 1);
+        public override Version Version => new Version(1, 1, 0);
         public override Version RequiredExiledVersion => new Version(7, 2, 0);
 
 
@@ -29,7 +34,7 @@ namespace RolePlay_Tools
 
             base.OnEnabled();
 
-            Log.Debug("RolePlay Tools loaded succesfully!");
+            Exiled.API.Features.Log.Debug("RolePlay Tools loaded succesfully!");
         }
 
         public override void OnDisabled()
@@ -38,5 +43,17 @@ namespace RolePlay_Tools
 
             base.OnDisabled();
         }
+#else
+
+        [PluginConfig("RolePlay-Tools/Config.yml")]
+        public Config Config;
+
+        [PluginPriority(LoadPriority.Medium)]
+        [PluginEntryPoint("RolePlay-Tools", "1.1.0", "Plugin that adds some RP shit.", "pan_andrzej")]
+        void LoadPlugin()
+        {
+            Instance = this;
+        }
+#endif
     }
 }

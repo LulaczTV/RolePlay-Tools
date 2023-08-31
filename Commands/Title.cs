@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandSystem.Commands.Console;
 using CommandSystem;
-using Exiled.API.Features;
+using PluginAPI.Core;
 using UnityEngine;
 
 namespace RolePlay_Tools.Commands
@@ -21,14 +21,27 @@ namespace RolePlay_Tools.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Player player = Player.Get(sender);
+            if (!Plugin.Instance.Config.IsTitleEnabled)
+            {
+                response = "This command is disabled by server owner!";
+                return false;
+            }
+#if EXILED
+            Exiled.API.Features.Player player = Exiled.API.Features.Player.Get(sender);
+#else
+            PluginAPI.Core.Player player = PluginAPI.Core.Player.Get(sender);
+#endif
 
             if (player == null)
             {
                 response = "Error!";
                 return false;
             }
+#if EXILED
             if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079)
+#else
+            if(player.Role == PlayerRoles.RoleTypeId.Scp079)
+#endif
             {
                 response = "U can't use that command as SCP-079!";
                 return false;

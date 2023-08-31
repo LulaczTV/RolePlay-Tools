@@ -4,14 +4,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Exiled.API.Interfaces;
 
 namespace RolePlay_Tools
 {
-    public class Config : IConfig
+#if EXILED
+    public class Config : Exiled.API.Interfaces.IConfig
+#else
+    public class Config
+#endif
     {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
+        public bool IsTitleEnabled { get; set; } = true;
         [Description("Players who can see the .me command in radius")]
         public float MeCommandRadius { get; set; } = 40;
         [Description("Players who can see the .try command in radius")]
@@ -20,6 +24,8 @@ namespace RolePlay_Tools
         public float DoCommandRadius { get; set; } = 40;
         [Description("Duration time of hints in seconds")]
         public float HintDurationTime { get; set; } = 5;
+        [Description("Voffset for hints. Default: -500")]
+        public int Voffset { get; set; } = -500;
         public string TitleCmdDesc { get; set; } = "Your description of Title cmd";
         public string DoCmdDesc { get; set; } = "Your description of Do cmd";
         public string MeCmdDesc { get; set; } = "Your description of Me cmd";

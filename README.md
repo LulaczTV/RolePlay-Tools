@@ -7,3 +7,6 @@ Plugin is available on Exiled and NW PluginAPI.
 ## Features
 
 ### .me command - 
+### .do command - 
+### .try command - 
+### .title command - 

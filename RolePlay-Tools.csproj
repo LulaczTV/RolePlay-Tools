@@ -45,7 +45,7 @@
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\dependencies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\dependencies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.0\Assembly-CSharp-firstpass.dll</HintPath>
@@ -56,40 +56,44 @@
     <Reference Include="CommandSystem.Core">
       <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.0\CommandSystem.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.API, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Exiled.API, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\dependencies\Exiled.API.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\dependencies\Exiled.API.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CreditTags, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Exiled.CreditTags, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\Exiled.CreditTags.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.CreditTags.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomItems, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Exiled.CustomItems, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\Exiled.CustomItems.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.CustomItems.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomRoles, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Exiled.CustomRoles, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\Exiled.CustomRoles.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.CustomRoles.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Events, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Exiled.Events, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\Exiled.Events.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Permissions, Version=7.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Exiled.Loader, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\Exiled.Permissions.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Permissions, Version=7.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.Updater, Version=3.1.2.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\Exiled.Updater.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\Exiled.Updater.dll</HintPath>
     </Reference>
     <Reference Include="Mirror">
       <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.0\Mirror.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\dependencies\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\dependencies\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="NorthwoodLib">
       <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.0\NorthwoodLib.dll</HintPath>
@@ -102,7 +106,7 @@
     </Reference>
     <Reference Include="SemanticVersioning, Version=2.0.2.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\7.2.0\dependencies\SemanticVersioning.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\dependencies\SemanticVersioning.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

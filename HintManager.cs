@@ -14,58 +14,45 @@ namespace RolePlay_Tools
 #endif
     public class HintManager
     {
-        private Dictionary<Player, List<string>> activeHints = new Dictionary<Player, List<string>>();
-        private CoroutineHandle hintDisplayCoroutine;
+        private Dictionary<Player, Queue<string>> playerHints = new Dictionary<Player, Queue<string>>();
+        CoroutineHandle cor;
 
         public void EnqueueHint(Player targetPlayer, string hint)
         {
-            if (!activeHints.ContainsKey(targetPlayer))
+            if (!playerHints.ContainsKey(targetPlayer))
             {
-                activeHints[targetPlayer] = new List<string>();
+                playerHints[targetPlayer] = new Queue<string>();
             }
 
-            activeHints[targetPlayer].Add(hint);
+            Queue<string> hintsQueue = playerHints[targetPlayer];
 
-            if (!Timing.IsRunning(hintDisplayCoroutine))
+            hintsQueue.Enqueue(hint);
+
+            if (!cor.IsRunning)
             {
-                hintDisplayCoroutine = Timing.RunCoroutine(DisplayHints());
+                cor = Timing.RunCoroutine(DisplayHintsCoroutine(targetPlayer));
             }
         }
 
-        private IEnumerator<float> DisplayHints()
+        private IEnumerator<float> DisplayHintsCoroutine(Player targetPlayer)
         {
-            while (activeHints.Count > 0)
+            while (playerHints.ContainsKey(targetPlayer) && playerHints[targetPlayer].Count > 0)
             {
-                foreach (var playerEntry in activeHints)
-                {
-                    Player targetPlayer = playerEntry.Key;
-                    List<string> hintsToDisplay = playerEntry.Value;
+                Queue<string> hintsToDisplay = playerHints[targetPlayer];
+
+                string hintText = hintsToDisplay.Dequeue();
 #if EXILED
-                    targetPlayer.ShowHint(string.Join("\n", hintsToDisplay.ToArray()), Plugin.Instance.Config.HintDurationTime);
+                targetPlayer.ShowHint(hintText, Plugin.Instance.Config.HintDurationTime);
 #else
-                    targetPlayer.ReceiveHint(string.Join("\n", hintsToDisplay.ToArray()));
+                targetPlayer.ReceiveHint(hintText, Plugin.Instance.Config.HintDurationTime);
 #endif
-                }
 
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.HintDurationTime);
+            }
 
-                List<Player> playersToRemove = new List<Player>();
-                foreach (var playerEntry in activeHints)
-                {
-                    if (playerEntry.Value.Count > 0)
-                    {
-                        playerEntry.Value.RemoveAt(0);
-                    }
-                    else
-                    {
-                        playersToRemove.Add(playerEntry.Key);
-                    }
-                }
-
-                foreach (var player in playersToRemove)
-                {
-                    activeHints.Remove(player);
-                }
+            if (playerHints.ContainsKey(targetPlayer))
+            {
+                playerHints.Remove(targetPlayer);
             }
         }
     }

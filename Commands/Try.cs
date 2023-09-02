@@ -32,12 +32,12 @@ namespace RolePlay_Tools.Commands
                 return false;
             }
 #if EXILED
-            if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079)
+            if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079 || player.Role.Type == PlayerRoles.RoleTypeId.Spectator)
 #else
-            if(player.Role == PlayerRoles.RoleTypeId.Scp079)
+            if (player.Role == PlayerRoles.RoleTypeId.Scp079 || player.Role == PlayerRoles.RoleTypeId.Spectator)
 #endif
             {
-                response = "You can't use this command as SCP-079!";
+                response = "You can't use this command as SCP-079 or spectator!";
                 return false;
             }
             if (arguments.Count == 0)

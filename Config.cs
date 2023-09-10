@@ -22,6 +22,8 @@ namespace RolePlay_Tools
         public float TryCommandRadius { get; set; } = 40;
         [Description("Players who can see the .do command in radius")]
         public float DoCommandRadius { get; set; } = 40;
+        [Description("Players who can see the .ooc command in radius")]
+        public float OocCommandRadius { get; set; } = 40;
         [Description("Duration time of hints in seconds")]
         public float HintDurationTime { get; set; } = 5;
         [Description("Voffset for hints. Default: -500")]

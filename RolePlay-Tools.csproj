@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="Commands\Do.cs" />
     <Compile Include="Commands\Me.cs" />
+    <Compile Include="Commands\Ooc.cs" />
     <Compile Include="Commands\Title.cs" />
     <Compile Include="Commands\Try.cs" />
     <Compile Include="Config.cs" />

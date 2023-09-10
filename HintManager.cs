@@ -15,23 +15,20 @@ namespace RolePlay_Tools
     public class HintManager
     {
         private Dictionary<Player, Queue<string>> playerHints = new Dictionary<Player, Queue<string>>();
-        CoroutineHandle cor;
+        public CoroutineHandle cor;
 
-        public void EnqueueHint(Player targetPlayer, string hint)
+        public void EnqueueHint(Player target, string hint)
         {
-            if (!playerHints.ContainsKey(targetPlayer))
+            if (!playerHints.ContainsKey(target))
             {
-                playerHints[targetPlayer] = new Queue<string>();
+                playerHints[target] = new Queue<string>();
             }
 
-            Queue<string> hintsQueue = playerHints[targetPlayer];
+            Queue<string> hintsQueue = playerHints[target];
 
             hintsQueue.Enqueue(hint);
 
-            if (!cor.IsRunning)
-            {
-                cor = Timing.RunCoroutine(DisplayHintsCoroutine(targetPlayer));
-            }
+            cor = Timing.RunCoroutine(DisplayHintsCoroutine(target));
         }
 
         private IEnumerator<float> DisplayHintsCoroutine(Player targetPlayer)

@@ -8,6 +8,7 @@ using PluginAPI.Core;
 using PluginAPI.Enums;
 using Exiled.API.Features;
 using UnityEngine;
+using PluginAPI.Events;
 
 namespace RolePlay_Tools
 {
@@ -24,14 +25,17 @@ namespace RolePlay_Tools
 #if EXILED
         public override string Name => "RolePlay Tools";
         public override string Author => "pan_andrzej";
-        public override Version Version => new Version(1, 1, 0);
-        public override Version RequiredExiledVersion => new Version(7, 2, 0);
+        public override Version Version => new Version(1, 2, 3);
+        public override Version RequiredExiledVersion => new Version(8, 2, 1);
 
+        private EventHandlers eventHandlers { get; set; }
 
         public override void OnEnabled()
         {
             Instance = this;
+            eventHandlers = new EventHandlers();
 
+            RegisterEvents();
             base.OnEnabled();
 
             Exiled.API.Features.Log.Debug("RolePlay Tools loaded succesfully!");
@@ -40,8 +44,20 @@ namespace RolePlay_Tools
         public override void OnDisabled()
         {
             Instance = null;
+            eventHandlers = null;
 
+            UnregisterEvents();
             base.OnDisabled();
+        }
+
+        public void RegisterEvents()
+        {
+            Exiled.Events.Handlers.Server.RoundEnded += eventHandlers.OnRoundEnded;
+        }
+        public void UnregisterEvents()
+        {
+            Exiled.Events.Handlers.Server.RoundEnded -= eventHandlers.OnRoundEnded;
+
         }
 #else
 
@@ -53,6 +69,9 @@ namespace RolePlay_Tools
         void LoadPlugin()
         {
             Instance = this;
+
+            EventManager.RegisterEvents(this);
+            EventManager.RegisterEvents<EventHandlers>(this);
         }
 #endif
     }

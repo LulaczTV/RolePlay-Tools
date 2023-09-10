@@ -74,7 +74,7 @@ namespace RolePlay_Tools.Commands
                 {
                     if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow><b>{player.Nickname}</b>:</color> .try {text}\n<color=green>Successfully!</color></voffset>");
+                        Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow><b>{player.DisplayNickname}</b>:</color> .try {text}\n<color=green>Successfully!</color></voffset>");
                     }
                 }
                 response = "<color=green> Successfully!";

@@ -39,13 +39,16 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NWAPI|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NW|AnyCPU'">
     <OutputPath>bin\NWAPI\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\8.0.0\dependencies\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="AdvancedHints-NW">
+      <HintPath>dependencies\AdvancedHints-NW.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.0\Assembly-CSharp-firstpass.dll</HintPath>
@@ -138,9 +141,12 @@
     <Compile Include="Commands\Try.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="EventHandlers.cs" />
-    <Compile Include="HintManager.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del "RolePlay-Tools-$(ConfigurationName).dll"
+ren "$(TargetPath)" "RolePlay-Tools-$(ConfigurationName).dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

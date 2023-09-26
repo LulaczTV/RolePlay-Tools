@@ -20,8 +20,6 @@ namespace RolePlay_Tools
     {
 
         public static Plugin Instance;
-        public readonly HintManager hintManager = new HintManager();
-
 #if EXILED
         public override string Name => "RolePlay Tools";
         public override string Author => "pan_andrzej";

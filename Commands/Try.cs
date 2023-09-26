@@ -59,10 +59,11 @@ namespace RolePlay_Tools.Commands
                 {
                     if (Vector3.Distance(ply.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow><b>{player.Nickname}</b>:</color> .try {text}\n<color=red>Unsuccessfully!</color></voffset>");
+                        AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow><b>{player.DisplayNickname}</b>:</color> .try {text}\n<color=red>Unsuccessfully!</color>", Plugin.Instance.Config.HintDurationTime, false, AdvancedHints.Enums.DisplayLocation.Bottom);
                     }
                 }
                 response = "<color=red>Unsuccessfully!";
+                return true;
             }
             else
             {
@@ -74,15 +75,12 @@ namespace RolePlay_Tools.Commands
                 {
                     if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow><b>{player.DisplayNickname}</b>:</color> .try {text}\n<color=green>Successfully!</color></voffset>");
+                        AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow><b>{player.DisplayNickname}</b>:</color> .try {text}\n<color=green>Successfully!</color>", Plugin.Instance.Config.HintDurationTime, false, AdvancedHints.Enums.DisplayLocation.Bottom);
                     }
                 }
                 response = "<color=green> Successfully!";
+                return true;
             }
-
-
-            response = "Sent!";
-            return true;
         }
     }
 }

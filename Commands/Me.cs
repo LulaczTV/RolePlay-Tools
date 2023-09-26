@@ -57,7 +57,7 @@ namespace RolePlay_Tools.Commands
             {
                 if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.MeCommandRadius)
                 {
-                    Plugin.Instance.hintManager.EnqueueHint(ply, $"<voffset={Plugin.Instance.Config.Voffset}><color=yellow>{player.DisplayNickname}:</color> <color=red>.me {text}</color></voffset>");
+                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=red>.me {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
                 }
             }
             response = "Sent!";

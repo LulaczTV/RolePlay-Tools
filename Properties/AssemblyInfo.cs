@@ -5,11 +5,8 @@ using System.Runtime.InteropServices;
 // Ogólne informacje o zestawie są kontrolowane poprzez następujący 
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
-#if EXILED
-[assembly: AssemblyTitle("RolePlay-Tools-Exiled")]
-#else
-[assembly: AssemblyTitle("RolePlay-Tools-NW")]
-#endif
+
+[assembly: AssemblyTitle("RolePlay-Tools")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("pan_andrzej")]

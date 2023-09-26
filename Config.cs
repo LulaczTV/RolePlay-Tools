@@ -27,7 +27,7 @@ namespace RolePlay_Tools
         [Description("Duration time of hints in seconds")]
         public float HintDurationTime { get; set; } = 5;
         [Description("Voffset for hints. Default: -500")]
-        public int Voffset { get; set; } = -500;
+        public AdvancedHints.Enums.DisplayLocation HintDisplayLocation { get; set; } = AdvancedHints.Enums.DisplayLocation.Bottom;
         public string TitleCmdDesc { get; set; } = "Your description of Title cmd";
         public string DoCmdDesc { get; set; } = "Your description of Do cmd";
         public string MeCmdDesc { get; set; } = "Your description of Me cmd";

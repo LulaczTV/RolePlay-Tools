@@ -1,4 +1,5 @@
 # RolePlay-Tools
+This plugin uses [AdvancedHints](https://github.com/moddedmcplayer/AdvancedHints) as a dependency.
 Plugin that adds some RolePlay shit.
 
 Plugin is available on Exiled and NW PluginAPI.
@@ -7,6 +8,8 @@ Plugin is available on Exiled and NW PluginAPI.
 ## Features
 
 ### .me command
+Shows hint for people in X distance.
+### .ooc
 Shows hint for people in X distance.
 ### .do command
 Shows hint for people in X distance.

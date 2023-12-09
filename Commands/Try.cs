@@ -13,7 +13,7 @@ namespace RolePlay_Tools.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Try : ICommand
     {
-        public string Command => "try";
+        public string Command => Plugin.Instance.Config.TryCmdName;
 
         public string[] Aliases => new string[] { "rp-try" };
 
@@ -42,7 +42,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = "Use: .try [text]";
+                response = $"Use: .{Plugin.Instance.Config.TryCmdName} [text]";
                 return false;
             }
 
@@ -59,10 +59,10 @@ namespace RolePlay_Tools.Commands
                 {
                     if (Vector3.Distance(ply.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow><b>{player.DisplayNickname}</b>:</color> .try {text}\n<color=red>Unsuccessfully!</color>", Plugin.Instance.Config.HintDurationTime, false, AdvancedHints.Enums.DisplayLocation.Bottom);
+                        AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow><b>{player.DisplayNickname}</b>:</color> .{Plugin.Instance.Config.TryCmdName} {text}\n<color=red>Unsuccessfully!</color>", Plugin.Instance.Config.HintDurationTime, false, AdvancedHints.Enums.DisplayLocation.Bottom);
                     }
                 }
-                response = "<color=red>Unsuccessfully!";
+                response = "<color=red> Unsuccessfully!</color>";
                 return true;
             }
             else
@@ -75,10 +75,10 @@ namespace RolePlay_Tools.Commands
                 {
                     if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.TryCommandRadius)
                     {
-                        AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow><b>{player.DisplayNickname}</b>:</color> .try {text}\n<color=green>Successfully!</color>", Plugin.Instance.Config.HintDurationTime, false, AdvancedHints.Enums.DisplayLocation.Bottom);
+                        AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow><b>{player.DisplayNickname}</b>:</color> .{Plugin.Instance.Config.TryCmdName} {text}\n<color=green>Successfully!</color>", Plugin.Instance.Config.HintDurationTime, false, AdvancedHints.Enums.DisplayLocation.Bottom);
                     }
                 }
-                response = "<color=green> Successfully!";
+                response = "<color=green> Successfully!</color>";
                 return true;
             }
         }

@@ -13,7 +13,7 @@ namespace RolePlay_Tools.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Me : ICommand
     {
-        public string Command => "me";
+        public string Command => Plugin.Instance.Config.MeCmdName;
 
         public string[] Aliases => new string[] { "rp-me" };
 
@@ -43,7 +43,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = "Use: .me [text]";
+                response = $"Use: .{Plugin.Instance.Config.MeCmdName} [text]";
                 return false;
             }
 
@@ -57,7 +57,7 @@ namespace RolePlay_Tools.Commands
             {
                 if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.MeCommandRadius)
                 {
-                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=red>.me {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
+                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=red>.{Plugin.Instance.Config.MeCmdName} {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
                 }
             }
             response = "Sent!";

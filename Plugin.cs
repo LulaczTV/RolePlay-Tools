@@ -23,8 +23,8 @@ namespace RolePlay_Tools
 #if EXILED
         public override string Name => "RolePlay Tools";
         public override string Author => "pan_andrzej";
-        public override Version Version => new Version(1, 2, 3);
-        public override Version RequiredExiledVersion => new Version(8, 2, 1);
+        public override Version Version => new Version(1, 4, 0);
+        public override Version RequiredExiledVersion => new Version(8, 4, 2);
 
         private EventHandlers eventHandlers { get; set; }
 
@@ -50,20 +50,19 @@ namespace RolePlay_Tools
 
         public void RegisterEvents()
         {
-            Exiled.Events.Handlers.Server.RoundEnded += eventHandlers.OnRoundEnded;
+            //Exiled.Events.Handlers.Player.Jumping += eventHandlers.OnJumping;
         }
         public void UnregisterEvents()
         {
-            Exiled.Events.Handlers.Server.RoundEnded -= eventHandlers.OnRoundEnded;
+            //Exiled.Events.Handlers.Player.Jumping -= eventHandlers.OnJumping;
 
         }
 #else
-
         [PluginConfig("RolePlay-Tools/Config.yml")]
         public Config Config;
 
         [PluginPriority(LoadPriority.Medium)]
-        [PluginEntryPoint("RolePlay-Tools", "1.1.0", "Plugin that adds some RP shit.", "pan_andrzej")]
+        [PluginEntryPoint("RolePlay-Tools", "1.4.0", "Plugin that adds some RP shit.", "pan_andrzej")]
         void LoadPlugin()
         {
             Instance = this;

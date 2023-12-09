@@ -13,7 +13,7 @@ namespace RolePlay_Tools.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Title : ICommand
     {
-        public string Command => "title";
+        public string Command => Plugin.Instance.Config.TitleCmdName;
 
         public string[] Aliases => new string[] { "title", "description", "desc" };
 
@@ -48,7 +48,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = "Use: .title [text]";
+                response = $"Use: .{Plugin.Instance.Config.TitleCmdName} [text]";
                 return false;
             }
 
@@ -56,7 +56,7 @@ namespace RolePlay_Tools.Commands
 
             player.CustomInfo = string.Empty;
             player.CustomInfo = text;
-            response = "title set!";
+            response = $"{Plugin.Instance.Config.TitleCmdName} set!";
             return true;
         }
     }

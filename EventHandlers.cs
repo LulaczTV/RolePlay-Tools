@@ -13,13 +13,20 @@ namespace RolePlay_Tools
 {
     public class EventHandlers
     {
-#if !EXILED
-        [PluginEvent]
-        public void OnRoundEnd(RoundEndEvent ev)
-#else
-        public void OnRoundEnded(RoundEndedEventArgs ev)
-#endif
-        {
-        }
+//#if !EXILED
+//        public void OnJumping(PluginAPI.Events.)
+//#else
+//        public void OnJumping(JumpingEventArgs ev)
+//#endif
+//        {
+//            if (ev.Player.Stamina < Plugin.Instance.Config.StaminaLoss)
+//            {
+//                ev.IsAllowed = false;
+//            }
+//            else
+//            {
+//                ev.Player.Stamina -= Plugin.Instance.Config.StaminaLoss;
+//            }
+//        }
     }
 }

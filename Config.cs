@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdvancedHints.Enums;
 
 namespace RolePlay_Tools
 {
@@ -26,11 +27,23 @@ namespace RolePlay_Tools
         public float OocCommandRadius { get; set; } = 40;
         [Description("Duration time of hints in seconds")]
         public float HintDurationTime { get; set; } = 5;
-        [Description("Voffset for hints. Default: -500")]
-        public AdvancedHints.Enums.DisplayLocation HintDisplayLocation { get; set; } = AdvancedHints.Enums.DisplayLocation.Bottom;
+        [Description("Display Location for hints. Available: Top, MiddleTop, Middle, MiddleBottom, Bottom")]
+        public DisplayLocation HintDisplayLocation { get; set; } = DisplayLocation.Bottom;
+        [Description("Your commands descriptions.")]
         public string TitleCmdDesc { get; set; } = "Your description of Title cmd";
         public string DoCmdDesc { get; set; } = "Your description of Do cmd";
         public string MeCmdDesc { get; set; } = "Your description of Me cmd";
         public string TryCmdDesc { get; set; } = "Your description of Try cmd";
+        public string OOCCmdDesc { get; set; } = "Your description of OOC cmd";
+        [Description("Your commands names. (Default: title, do, me, try, ooc)")]
+        public string TitleCmdName { get; set; } = "title";
+        public string DoCmdName { get; set; } = "do";
+        public string MeCmdName { get; set; } = "me";
+        public string TryCmdName { get; set; } = "try";
+        public string OOCCmdName { get; set; } = "ooc";
+        //[Description("Is stamina loss enabled?")]
+        //public bool IsStaminaLossEnabled { get; set; } = true;
+        //[Description("Stamina loss on jump")]
+        //public float StaminaLoss { get; set; } = 10f;
     }
 }

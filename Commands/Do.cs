@@ -13,7 +13,7 @@ namespace RolePlay_Tools.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Do : ICommand
     {
-        public string Command => "do";
+        public string Command => Plugin.Instance.Config.DoCmdName;
 
         public string[] Aliases => new string[] { "rp-do" };
 
@@ -43,7 +43,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = "Use: .do [text]";
+                response = $"Use: .{Plugin.Instance.Config.DoCmdName} [text]";
                 return false;
             }
 
@@ -56,7 +56,7 @@ namespace RolePlay_Tools.Commands
             {
                 if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.DoCommandRadius)
                 {
-                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=blue>.do {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
+                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=blue>.{Plugin.Instance.Config.DoCmdName} {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
                 }
             }
             response = "Sent!";

@@ -13,11 +13,11 @@ namespace RolePlay_Tools.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Ooc : ICommand
     {
-        public string Command => "ooc";
+        public string Command => Plugin.Instance.Config.OOCCmdName;
 
-        public string[] Aliases => new string[] { "ooc-me" };
+        public string[] Aliases => new string[] { "rp-ooc" };
 
-        public string Description => Plugin.Instance.Config.MeCmdDesc;
+        public string Description => Plugin.Instance.Config.OOCCmdDesc;
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -43,7 +43,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = "Use: .ooc [text]";
+                response = $"Use: .{Plugin.Instance.Config.OOCCmdName} [text]";
                 return false;
             }
 
@@ -57,7 +57,7 @@ namespace RolePlay_Tools.Commands
             {
                 if (Vector3.Distance(player.Position, ply.Position) <= Plugin.Instance.Config.OocCommandRadius)
                 {
-                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=red>.ooc {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
+                    AdvancedHints.Components.HudManager.ShowHint(ply, $"<color=yellow>{player.DisplayNickname}:</color> <color=red>.{Plugin.Instance.Config.OOCCmdName} {text}</color>", Plugin.Instance.Config.HintDurationTime, false, Plugin.Instance.Config.HintDisplayLocation);
                 }
             }
             response = "Sent!";

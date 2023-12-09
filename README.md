@@ -1,7 +1,5 @@
 # RolePlay-Tools
 
-Temporary archived.
-
 This plugin uses [AdvancedHints](https://github.com/moddedmcplayer/AdvancedHints) as a dependency.
 Plugin that adds some RolePlay shit.
 

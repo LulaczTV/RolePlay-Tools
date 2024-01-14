@@ -47,10 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="AdvancedHints-Exiled, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dependencies\AdvancedHints-Exiled.dll</HintPath>
-    </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Frameworki\NWAPI\13.3.1\Assembly-CSharp-firstpass.dll</HintPath>
@@ -114,6 +110,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Frameworki\NWAPI\13.3.1\Pooling.dll</HintPath>
     </Reference>
+    <Reference Include="RueI">
+      <HintPath>..\Frameworki\NWAPI\13.3.1\RueI.dll</HintPath>
+    </Reference>
     <Reference Include="SemanticVersioning, Version=2.0.2.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\SemanticVersioning.dll</HintPath>
@@ -155,21 +154,36 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Frameworki\NWAPI\13.3.1\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Do.cs" />
-    <Compile Include="Commands\Me.cs" />
-    <Compile Include="Commands\Ooc.cs" />
-    <Compile Include="Commands\Title.cs" />
-    <Compile Include="Commands\Try.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="EventHandlers.cs" />
-    <Compile Include="Plugin.cs" />
+    <Compile Include="EXILED\API.cs" />
+    <Compile Include="EXILED\Commands\Toggle.cs" />
+    <Compile Include="EXILED\Commands\Do.cs" />
+    <Compile Include="EXILED\Commands\Me.cs" />
+    <Compile Include="EXILED\Commands\Ooc.cs" />
+    <Compile Include="EXILED\Commands\Title.cs" />
+    <Compile Include="EXILED\Commands\Try.cs" />
+    <Compile Include="EXILED\Config.cs" />
+    <Compile Include="EXILED\EventHandlers.cs" />
+    <Compile Include="EXILED\Plugin.cs" />
+    <Compile Include="Features\CommandInfo.cs" />
+    <Compile Include="NWAPI\Commands\Do.cs" />
+    <Compile Include="NWAPI\Commands\Me.cs" />
+    <Compile Include="NWAPI\Commands\Ooc.cs" />
+    <Compile Include="NWAPI\Commands\Title.cs" />
+    <Compile Include="NWAPI\Commands\Try.cs" />
+    <Compile Include="NWAPI\Config.cs" />
+    <Compile Include="NWAPI\EventHandlers.cs" />
+    <Compile Include="NWAPI\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del "RolePlay-Tools-$(ConfigurationName).dll"
-ren "$(TargetPath)" "RolePlay-Tools-$(ConfigurationName).dll"</PostBuildEvent>
+    <PostBuildEvent>del "PA-RolePlay-Tools-$(ConfigurationName).dll"
+ren "$(TargetPath)" "PA-RolePlay-Tools-$(ConfigurationName).dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>

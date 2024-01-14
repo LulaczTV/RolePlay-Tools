@@ -5,22 +5,6 @@ Plugin that adds RolePlay commands to the game!
 
 Plugin is available on Exiled.
 
-
-## Features
-
-### pame command
-Shows hint for people in X distance.
-### paooc
-Shows hint for people in X distance.
-### pado command
-Shows hint for people in X distance.
-### patry command
-50/50 system. If it rolls below 50, the action will be displayed as a hint with color red. If it rolls higher than 50, the action will be displayed as a hint with color green. And ofc it shows hint for people in X distance.
-### patitle command
-Sets custom info of a player.
-### patoggle command
-Disables or enables
-
 ### Command List
 CommandName | CommandAliases | Description
 :---: | :---: | :------

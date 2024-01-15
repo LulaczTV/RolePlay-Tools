@@ -1,5 +1,4 @@
-﻿#if EXILED
-using Exiled.API.Interfaces;
+﻿#if !EXILED
 using RolePlay_Tools.Features;
 using System;
 using System.Collections.Generic;
@@ -9,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace RolePlay_Tools
+namespace RolePlay_Tools_NW
 {
-    public class Config : IConfig
+    public class Config
     {
         public bool IsEnabled { get; set; } = true;
         [Description("Is stamina loss enabled?")]

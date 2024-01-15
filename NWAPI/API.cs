@@ -1,5 +1,5 @@
-﻿#if EXILED
-using Exiled.API.Features;
+﻿#if !EXILED
+using PluginAPI.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using RueI.Elements;
 using MEC;
 using RolePlay_Tools.Features;
 
-namespace RolePlay_Tools
+namespace RolePlay_Tools_NW
 {
     public class API
     {
@@ -32,7 +32,7 @@ namespace RolePlay_Tools
 
                 if (rand <= 50)
                 {
-                    foreach (Player ply in Player.List)
+                    foreach (Player ply in Player.GetPlayers())
                     {
                         if (UnityEngine.Vector3.Distance(player.Position, ply.Position) > commandInfo.CommandRadius) return;
 
@@ -60,7 +60,7 @@ namespace RolePlay_Tools
                 }
                 else
                 {
-                    foreach (Player ply in Player.List)
+                    foreach (Player ply in Player.GetPlayers())
                     {
                         if (UnityEngine.Vector3.Distance(player.Position, ply.Position) > commandInfo.CommandRadius) return;
 
@@ -94,7 +94,7 @@ namespace RolePlay_Tools
                     ZIndex = 10,
                 };
 
-                foreach(Player ply in Player.List)
+                foreach(Player ply in Player.GetPlayers())
                 {
                     if (UnityEngine.Vector3.Distance(player.Position, ply.Position) > commandInfo.CommandRadius) return;
 

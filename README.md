@@ -1,6 +1,5 @@
-# RolePlay-Tools
-
 ![Github All Downloads](https://img.shields.io/github/downloads/LulaczTV/RolePlay-Tools/total.svg?style=flat)
+# RolePlay-Tools
 
 This plugin uses [RueI](https://github.com/Ruemena/RueI/releases/latest/) as a dependency.
 Plugin that adds RolePlay commands to the game!

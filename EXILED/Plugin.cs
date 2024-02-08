@@ -11,13 +11,13 @@ namespace RolePlay_Tools
         public static Plugin Instance;
         public EventHandlers eventHandlers { get; set; }
         public API API { get; set; }
-        public const string PluginVersion = "2.1.0";
+        public const string PluginVersion = "2.1.2";
         public string HintsFilePath;
 
         public override string Name => "PA-RolePlay Tools";
         public override string Author => "pan_andrzej";
         public override Version Version => new Version(PluginVersion);
-        public override Version RequiredExiledVersion => new Version(8, 7, 0);
+        public override Version RequiredExiledVersion => new Version(8, 8, 0);
 
         public override void OnEnabled()
         {

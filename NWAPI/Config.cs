@@ -20,6 +20,10 @@ namespace RolePlay_Tools_NW
         public int TryCommandPosition { get; set; } = 300;
         [Description("Hud position of me,do,ooc commands")]
         public int OtherCommandsPosition { get; set; } = 450;
+        [Description("Commands cooldown time")]
+        public float CommandCooldown { get; set; } = 5f;
+        [Description("Command Cooldown message. Placeholders: [%time%]")]
+        public string CommandCooldownMsg { get; set; } = "You need to wait %time% to use command again";
         public CommandInfo MeCommand { get; set; } = new CommandInfo()
         {
             IsEnabled = true,

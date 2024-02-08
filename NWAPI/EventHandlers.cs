@@ -23,8 +23,6 @@ namespace RolePlay_Tools_NW
         [PluginEvent]
         public void OnRoundEnded(RoundEndEvent ev)
         {
-            Plugin.Instance.API.PlayerDisplays.Clear();
-
             try
             {
                 List<string> playersRead = File.ReadAllLines(Plugin.Instance.HintsFilePath).ToList();

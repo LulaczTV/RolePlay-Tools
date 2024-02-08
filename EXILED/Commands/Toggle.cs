@@ -1,6 +1,7 @@
 ﻿#if EXILED
 using CommandSystem;
 using System;
+using Exiled.API.Features;
 
 namespace RolePlay_Tools.Commands
 {
@@ -15,7 +16,7 @@ namespace RolePlay_Tools.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Exiled.API.Features.Player player = Exiled.API.Features.Player.Get(sender);
+            Player player = Player.Get(sender);
 
             if (player == null)
             {

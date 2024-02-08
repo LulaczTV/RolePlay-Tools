@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.API.Features.Roles;
 
 namespace RolePlay_Tools.Commands
 {
@@ -38,7 +39,7 @@ namespace RolePlay_Tools.Commands
                 return false;
             }
 
-            if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079 || player.Role.Type == PlayerRoles.RoleTypeId.Spectator)
+            if (player.Role is not FpcRole)
             {
                 response = "U can't use that command as SCP-079 or spectator!";
                 return false;

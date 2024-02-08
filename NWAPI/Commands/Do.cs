@@ -2,7 +2,9 @@
 using System;
 using System.Linq;
 using CommandSystem;
+using PlayerRoles.FirstPersonControl;
 using PluginAPI.Core;
+using PluginAPI.Roles;
 using UnityEngine;
 
 namespace RolePlay_Tools_NW.Commands
@@ -37,7 +39,6 @@ namespace RolePlay_Tools_NW.Commands
                 response = "Error!";
                 return false;
             }
-
             if (player.Role == PlayerRoles.RoleTypeId.Scp079 || player.Role == PlayerRoles.RoleTypeId.Spectator)
             {
                 response = "You can't use this command as SCP-079 or spectator!";

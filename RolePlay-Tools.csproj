@@ -36,15 +36,16 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NW|AnyCPU'">
     <OutputPath>bin\NWAPI\</OutputPath>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\0Harmony.dll</HintPath>
+      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\Frameworki\NWAPI\13.3.1\Assembly-CSharp-firstpass.dll</HintPath>
@@ -54,6 +55,9 @@
     </Reference>
     <Reference Include="CommandSystem.Core">
       <HintPath>..\Frameworki\NWAPI\13.3.1\CommandSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.API">
+      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\Exiled.API.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.CreditTags">
       <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.CreditTags.dll</HintPath>
@@ -79,6 +83,9 @@
     <Reference Include="Mirror.Components">
       <HintPath>..\Frameworki\NWAPI\13.3.1\Mirror.Components.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Posix">
+      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\Mono.Posix.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>..\Frameworki\NWAPI\13.3.1\netstandard.dll</HintPath>
     </Reference>
@@ -88,10 +95,15 @@
     <Reference Include="PluginAPI">
       <HintPath>..\Frameworki\NWAPI\13.3.1\PluginAPI.dll</HintPath>
     </Reference>
+    <Reference Include="Pooling, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="RueI">
       <HintPath>..\Frameworki\NWAPI\13.3.1\RueI.dll</HintPath>
     </Reference>
+    <Reference Include="SemanticVersioning">
+      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\SemanticVersioning.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.API.Features.Roles;
 using UnityEngine;
 
 namespace RolePlay_Tools.Commands
@@ -18,8 +19,6 @@ namespace RolePlay_Tools.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Exiled.API.Features.Player player = Exiled.API.Features.Player.Get(sender);
-
             if (!Plugin.Instance.Config.TryCommand.IsEnabled)
             {
                 response = "Command is disabled by server owner!";
@@ -32,13 +31,15 @@ namespace RolePlay_Tools.Commands
                 return false;
             }
 
+            Player player = Player.Get(sender);
+
             if (player == null)
             {
                 response = "Error!";
                 return false;
             }
 
-            if (player.Role.Type == PlayerRoles.RoleTypeId.Scp079 || player.Role.Type == PlayerRoles.RoleTypeId.Spectator)
+            if (player.Role is not FpcRole)
             {
                 response = "You can't use this command as SCP-079 or spectator!";
                 return false;

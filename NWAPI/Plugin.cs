@@ -15,7 +15,7 @@ namespace RolePlay_Tools_NW
         public static Plugin Instance;
         public EventHandlers eventHandlers { get; set; }
         public API API { get; set; }
-        public const string PluginVersion = "2.1.0";
+        public const string PluginVersion = "2.1.2";
         public string HintsFilePath;
 
         [PluginConfig("PA-RolePlay-Tools/Config.yml")]

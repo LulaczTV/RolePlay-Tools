@@ -4,7 +4,8 @@
 This plugin uses [RueI](https://github.com/Ruemena/RueI/releases/latest/) as a dependency.
 Plugin that adds RolePlay commands to the game!
 
-Plugin is available on Exiled.
+Plugin is available on Exiled and Northwood PluginAPI.
+!Note: The NWAPI version lacks stamina losing on jumping feature.
 
 ### Command List
 CommandName | CommandAliases | Description

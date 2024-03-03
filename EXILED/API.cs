@@ -9,14 +9,15 @@ using RueI.Displays;
 using RueI.Elements;
 using MEC;
 using RolePlay_Tools.Features;
+using RueI.Parsing;
+using System.Text.RegularExpressions;
 
 namespace RolePlay_Tools
 {
     public class API
     {
         public Dictionary<Player, DateTime> CommandCooldown = new();
-        public Queue<HintQueueItem> TryHintQueue = new();
-        public Queue<HintQueueItem> OtherHintQueue = new();
+        public Queue<HintQueueItem> TryHintQueue, OtherHintQueue = new();
         private CoroutineHandle tryCor, otherCor;
 
         public void ShowHint(Player player, string hintText, CommandInfo commandInfo)
@@ -45,8 +46,8 @@ namespace RolePlay_Tools
 
             //gets hint message by filtering CommandInfo
             string hint = commandInfo == Plugin.Instance.Config.TryCommand
-                ? GetTryHint(player, hintText, commandInfo)
-                : GetOtherHint(player, hintText, commandInfo);
+                ? GetTryHint(player, RemoveUnityTags(hintText), commandInfo)
+                : GetOtherHint(player, RemoveUnityTags(hintText), commandInfo);
 
             //gets element by filtering CommandInfo
             SetElement element = commandInfo == Plugin.Instance.Config.TryCommand
@@ -99,6 +100,14 @@ namespace RolePlay_Tools
         private string GetOtherHint(Player player, string hintText, CommandInfo commandInfo)
         {
             return $"<color={commandInfo.HintColor}><b>{player.DisplayNickname}</b>:</color> .{commandInfo.CommandOutputName} {hintText}";
+        }
+
+        private static string RemoveUnityTags(string hintText)
+        {
+            string pattern = @"<[^>]+>";
+            string outputText = Regex.Replace(hintText, pattern, string.Empty);
+
+            return outputText;
         }
 
         private IEnumerator<float> DisplayTryHintQueue(Queue<HintQueueItem> hintQueue)

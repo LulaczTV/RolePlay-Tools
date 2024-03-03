@@ -60,26 +60,6 @@ namespace RolePlay_Tools_NW
                 Log.Error(err.ToString());
             }
         }
-
-        //public void OnJumping(JumpingEventArgs ev)
-        //{
-        //    if (!Plugin.Instance.Config.IsStaminaLossEnabled)
-        //    {
-        //        Log.Debug("Stamina loss is disabled in config!");
-        //        return;
-        //    }
-
-        //    if (ev.Player.Stamina < Plugin.Instance.Config.StaminaJumpLoss)
-        //    {
-        //        Log.Debug($"Player has too low stamina level {ev.Player.Stamina}!");
-        //        ev.IsAllowed = false;
-        //    }
-        //    else
-        //    {
-        //        ev.Player.Stamina -= Plugin.Instance.Config.StaminaJumpLoss;
-        //        Log.Debug($"Removed {Plugin.Instance.Config.StaminaJumpLoss} stamina from player.");
-        //    }
-        //}
     }
 }
 #endif

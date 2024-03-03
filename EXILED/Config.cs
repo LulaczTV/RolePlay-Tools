@@ -15,7 +15,8 @@ namespace RolePlay_Tools
     {
         public bool IsEnabled { get; set; } = true;
         [Description("Is stamina loss enabled?")]
-        public bool IsStaminaLossEnabled { get; set; } = true;
+        public bool IsStaminaLossEnabled { get; set; } = false;
+        public bool IsHPForStaminaEnabled { get; set; } = false;
         public bool Debug { get; set; } = false;
         [Description("Hud position of try command")]
         public int TryCommandPosition { get; set; } = 300;
@@ -66,8 +67,12 @@ namespace RolePlay_Tools
             IsEnabled = true,
             MaxLenght = 256,
         };
-        [Description("Stamina loss on jump")]
-        public float StaminaJumpLoss { get; set; } = 10f;
+        [Description("Stamina loss on jump [Stamina level is between 0 and 1]")]
+        public float StaminaJumpLoss { get; set; } = 0.1f;
+        [Description("How many HP will be removed after depleting stamina")]
+        public int HpRemoved { get; set; } = 1;
+        [Description("How many stamina will be added after depleting [Stamina level is between 0 and 1]")]
+        public double StaminaAdded { get; set; } = 0.050;
     }
 }
 #endif

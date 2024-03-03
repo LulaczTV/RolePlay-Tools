@@ -9,6 +9,7 @@ using RueI.Displays;
 using RueI.Elements;
 using MEC;
 using RolePlay_Tools.Features;
+using System.Text.RegularExpressions;
 
 namespace RolePlay_Tools_NW
 {
@@ -45,8 +46,8 @@ namespace RolePlay_Tools_NW
 
             //gets hint message by filtering CommandInfo
             string hint = commandInfo == Plugin.Instance.Config.TryCommand
-                ? GetTryHint(player, hintText, commandInfo)
-                : GetOtherHint(player, hintText, commandInfo);
+                ? GetTryHint(player, RemoveUnityTags(hintText), commandInfo)
+                : GetOtherHint(player, RemoveUnityTags(hintText), commandInfo);
 
             //gets element by filtering CommandInfo
             SetElement element = commandInfo == Plugin.Instance.Config.TryCommand
@@ -101,6 +102,13 @@ namespace RolePlay_Tools_NW
             return $"<color={commandInfo.HintColor}><b>{player.DisplayNickname}</b>:</color> .{commandInfo.CommandOutputName} {hintText}";
         }
 
+        private static string RemoveUnityTags(string hintText)
+        {
+            string pattern = @"<[^>]+>";
+            string outputText = Regex.Replace(hintText, pattern, string.Empty);
+
+            return outputText;
+        }
         private IEnumerator<float> DisplayTryHintQueue(Queue<HintQueueItem> hintQueue)
         {
             while (hintQueue.Count > 0)

@@ -13,5 +13,6 @@ CommandName | CommandAliases | Description
 pame | me | Shows hint and send message in player console for people in X distance.
 pado | do | Shows hint and send message in player console for people in X distance.
 paooc | ooc | Shows hint and send message in player console for people in X distance.
+patitle | title | Sets custominfo of a player.
 patry | try | Adds 50/50 system. Shows hint and send message in player console for people in X distance.
 patoggle | toggle, switch | Enables or disables RP commands hints for player.

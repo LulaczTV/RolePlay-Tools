@@ -47,7 +47,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = $"Use: .ooc [text]";
+                response = $"Use: .ooc <text>";
                 return false;
             }
 

@@ -47,7 +47,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = $"Use: .do [text]";
+                response = $"Use: .do <text>";
                 return false;
             }
 

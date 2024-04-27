@@ -11,13 +11,13 @@ namespace RolePlay_Tools
         public static Plugin Instance;
         public EventHandlers eventHandlers { get; set; }
         public API API { get; set; }
-        public const string PluginVersion = "2.1.3";
+        public const string PluginVersion = "3.0.0";
         public string HintsFilePath;
 
         public override string Name => "PA-RolePlay Tools";
         public override string Author => "pan_andrzej";
         public override Version Version => new Version(PluginVersion);
-        public override Version RequiredExiledVersion => new Version(8, 8, 0);
+        public override Version RequiredExiledVersion => new Version(9, 0, 0);
 
         public override void OnEnabled()
         {
@@ -64,6 +64,7 @@ namespace RolePlay_Tools
             Exiled.Events.Handlers.Player.Verified += eventHandlers.OnVerified;
             Exiled.Events.Handlers.Player.Jumping += eventHandlers.OnJumping;
             Exiled.Events.Handlers.Player.ChangingMoveState += eventHandlers.OnChangingMoveState;
+            Exiled.Events.Handlers.Player.Dying += eventHandlers.OnDying;
         }
         public void UnregisterEvents()
         {
@@ -71,6 +72,7 @@ namespace RolePlay_Tools
             Exiled.Events.Handlers.Player.Verified -= eventHandlers.OnVerified;
             Exiled.Events.Handlers.Player.Jumping -= eventHandlers.OnJumping;
             Exiled.Events.Handlers.Player.ChangingMoveState -= eventHandlers.OnChangingMoveState;
+            Exiled.Events.Handlers.Player.Dying -= eventHandlers.OnDying;
         }
     }
 }

@@ -11,30 +11,21 @@ using MEC;
 using RolePlay_Tools.Features;
 using RueI.Parsing;
 using System.Text.RegularExpressions;
+using PlayerRoles.Subroutines;
 
 namespace RolePlay_Tools
 {
     public class API
     {
-        public Dictionary<Player, DateTime> CommandCooldown = new();
         public Queue<HintQueueItem> TryHintQueue, OtherHintQueue = new();
         private CoroutineHandle tryCor, otherCor;
 
         public void ShowHint(Player player, string hintText, CommandInfo commandInfo)
         {
-            if (!CommandCooldown.ContainsKey(player))
+            if (!commandInfo.CommandCooldown.IsReady)
             {
-                CommandCooldown.Add(player, DateTime.Now);
-            }
-            else
-            {
-                DateTime cooldownTime = CommandCooldown[player] + TimeSpan.FromSeconds(Plugin.Instance.Config.CommandCooldown);
-
-                if (DateTime.Now < cooldownTime)
-                {
-                    player.SendConsoleMessage(Plugin.Instance.Config.CommandCooldownMsg.Replace("%time%", Math.Round((cooldownTime - DateTime.Now).TotalSeconds, 2).ToString()), "red");
-                    return;
-                }
+                player.SendConsoleMessage(Plugin.Instance.Config.CommandCooldownMsg.Replace("%time%", commandInfo.CommandCooldown.Remaining.ToString()), "red");
+                return;
             }
 
             //gets player list of players near command sender
@@ -120,7 +111,7 @@ namespace RolePlay_Tools
                     display.Update();
                 }
 
-                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration);
+                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration ?? 0);
 
                 foreach(Display display in hintItem.Displays)
                 {
@@ -145,7 +136,7 @@ namespace RolePlay_Tools
                     display.Update();
                 }
 
-                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration);
+                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration ?? 0);
 
                 foreach (Display display in hintItem.Displays)
                 {

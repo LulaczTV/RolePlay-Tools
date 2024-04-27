@@ -22,8 +22,6 @@ namespace RolePlay_Tools
         public int TryCommandPosition { get; set; } = 300;
         [Description("Hud position of me,do,ooc commands")]
         public int OtherCommandsPosition { get; set; } = 450;
-        [Description("Commands cooldown time")]
-        public float CommandCooldown { get; set; } = 5f;
         [Description("Command Cooldown message. Placeholders: [%time%]")]
         public string CommandCooldownMsg { get; set; } = "You need to wait %time% to use command again";
         public CommandInfo MeCommand { get; set; } = new CommandInfo()
@@ -34,6 +32,12 @@ namespace RolePlay_Tools
             HintDuration = 5f,
             HintColor = "green",
             MaxLenght = 256,
+            CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
+            {
+                InitialTime = 5,
+                NextUse = 5,
+                Remaining = 5,
+            }
         };
         public CommandInfo DoCommand { get; set; } = new CommandInfo()
         {
@@ -43,6 +47,12 @@ namespace RolePlay_Tools
             HintDuration = 5f,
             HintColor = "#fd0000",
             MaxLenght= 256,
+            CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
+            {
+                InitialTime = 5,
+                NextUse = 5,
+                Remaining = 5,
+            }
         };
         public CommandInfo OocCommand { get; set; } = new CommandInfo()
         {
@@ -52,6 +62,12 @@ namespace RolePlay_Tools
             HintDuration = 5f,
             HintColor = "purple",
             MaxLenght = 256,
+            CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
+            {
+                InitialTime = 5,
+                NextUse = 5,
+                Remaining = 5,
+            }
         };
         public CommandInfo TryCommand { get; set; } = new CommandInfo()
         {
@@ -61,11 +77,24 @@ namespace RolePlay_Tools
             HintDuration = 5f,
             HintColor = "yellow",
             MaxLenght = 256,
+            CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
+            {
+                InitialTime = 5,
+                NextUse = 5,
+                Remaining = 5,
+            }
         };
-        public TitleCommandInfo TitleCommand { get; set; } = new TitleCommandInfo()
+        public CommandInfo TitleCommand { get; set; } = new CommandInfo()
         {
             IsEnabled = true,
+            HintDuration = 5f,
             MaxLenght = 256,
+            CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
+            {
+                InitialTime = 5,
+                NextUse = 5,
+                Remaining = 5,
+            }
         };
         [Description("Stamina loss on jump [Stamina level is between 0 and 1]")]
         public float StaminaJumpLoss { get; set; } = 0.1f;

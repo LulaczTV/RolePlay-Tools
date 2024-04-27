@@ -41,66 +41,58 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NW|AnyCPU'">
     <OutputPath>bin\NWAPI\</OutputPath>
-    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\dependencies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-Publicized">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\Assembly-CSharp-Publicized.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\Assembly-CSharp-Publicized.dll</HintPath>
     </Reference>
     <Reference Include="CommandSystem.Core">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\CommandSystem.Core.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\CommandSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.API">
-      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\Exiled.API.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\dependencies\Exiled.API.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.CreditTags">
-      <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.CreditTags.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\Exiled.CreditTags.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomItems">
-      <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.CustomItems.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.CustomRoles">
-      <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.CustomRoles.dll</HintPath>
+    <Reference Include="Exiled.CustomModules">
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\Exiled.CustomModules.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.Events">
-      <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.Events.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\Exiled.Events.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.Loader">
-      <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.Loader.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\Exiled.Loader.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.Permissions">
-      <HintPath>..\Frameworki\EXILED\8.3.1\Exiled.Permissions.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\Exiled.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="Mirror">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\Mirror.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror.Components">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\Mirror.Components.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Posix">
-      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\Mirror.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>..\Frameworki\NWAPI\13.3.1\netstandard.dll</HintPath>
     </Reference>
     <Reference Include="NorthwoodLib">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\NorthwoodLib.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\NorthwoodLib.dll</HintPath>
     </Reference>
     <Reference Include="PluginAPI">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\PluginAPI.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\PluginAPI.dll</HintPath>
     </Reference>
-    <Reference Include="Pooling, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Pooling">
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\Pooling.dll</HintPath>
+    </Reference>
     <Reference Include="RueI">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\RueI.dll</HintPath>
+      <HintPath>..\..\..\Downloads\RueI.dll</HintPath>
     </Reference>
     <Reference Include="SemanticVersioning">
-      <HintPath>..\Frameworki\EXILED\8.3.1\dependencies\SemanticVersioning.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\EXILED\9.0.0\dependencies\SemanticVersioning.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -112,28 +104,22 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClothModule">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="YamlDotNet">
-      <HintPath>..\Frameworki\NWAPI\13.3.1\YamlDotNet.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Pulpit\Frameworki\NWAPI\13.1\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +145,9 @@
     <Compile Include="NWAPI\EventHandlers.cs" />
     <Compile Include="NWAPI\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -46,7 +46,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = $"Use: .title [text]";
+                response = $"Use: .title <text>";
                 return false;
             }
 

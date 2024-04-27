@@ -84,6 +84,11 @@ namespace RolePlay_Tools
             ev.Player.Stamina = Convert.ToSingle(Plugin.Instance.Config.StaminaAdded);
             ev.Player.Health -= Plugin.Instance.Config.HpRemoved;
         }
+        
+        public void OnDying(DyingEventArgs ev)
+        {
+            ev.Player.CustomInfo = string.Empty;
+        }
     }
 }
 #endif

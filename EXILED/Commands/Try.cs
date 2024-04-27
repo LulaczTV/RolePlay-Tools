@@ -46,7 +46,7 @@ namespace RolePlay_Tools.Commands
             }
             if (arguments.Count == 0)
             {
-                response = $"Use: .try [text]";
+                response = $"Use: .try <text>";
                 return false;
             }
 

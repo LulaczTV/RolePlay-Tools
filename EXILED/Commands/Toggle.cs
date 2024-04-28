@@ -3,7 +3,7 @@ using CommandSystem;
 using System;
 using Exiled.API.Features;
 
-namespace RolePlay_Tools.Commands
+namespace RolePlay_Tools.EXILED.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Toggle : ICommand

@@ -13,7 +13,7 @@ using RueI.Parsing;
 using System.Text.RegularExpressions;
 using PlayerRoles.Subroutines;
 
-namespace RolePlay_Tools
+namespace RolePlay_Tools.EXILED
 {
     public class API
     {
@@ -24,7 +24,7 @@ namespace RolePlay_Tools
         {
             if (!commandInfo.CommandCooldown.IsReady)
             {
-                player.SendConsoleMessage(Plugin.Instance.Config.CommandCooldownMsg.Replace("%time%", commandInfo.CommandCooldown.Remaining.ToString()), "red");
+                player.SendConsoleMessage(Plugin.Instance.Translation.CooldownMsg.Replace("%time%", commandInfo.CommandCooldown.Remaining.ToString()), Plugin.Instance.Translation.CooldownMsgColor);
                 return;
             }
 
@@ -81,8 +81,8 @@ namespace RolePlay_Tools
         {
             int rand = UnityEngine.Random.Range(0, 100);
             return rand <= 50
-                ? $"<color={commandInfo.HintColor}><b>{player.DisplayNickname}</b>:</color> .{commandInfo.CommandOutputName} {hintText}\n<color=red>Unsuccessfully!</color>"
-                : $"<color={commandInfo.HintColor}><b>{player.DisplayNickname}</b>:</color> .{commandInfo.CommandOutputName} {hintText}\n<color=green>Successfully!</color>";
+                ? Plugin.Instance.Translation.TryCmdFailureHint.Replace("%color%", commandInfo.HintColor).Replace("%player%", player.DisplayNickname).Replace("%outputname%", commandInfo.CommandOutputName).Replace("%hint%", hintText)
+                : Plugin.Instance.Translation.TryCmdSuccesHint.Replace("%color%", commandInfo.HintColor).Replace("%player%", player.DisplayNickname).Replace("%outputname%", commandInfo.CommandOutputName).Replace("%hint%", hintText);
         }
 
         /// <summary>

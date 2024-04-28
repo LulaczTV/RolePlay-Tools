@@ -16,7 +16,7 @@ using RueI;
 using System.IO;
 using Exiled.API.Features;
 
-namespace RolePlay_Tools
+namespace RolePlay_Tools.EXILED
 {
     public class EventHandlers
     {

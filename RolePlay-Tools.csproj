@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EXILED\API.cs" />
+    <Compile Include="EXILED\Commands\Push.cs" />
     <Compile Include="EXILED\Commands\Toggle.cs" />
     <Compile Include="EXILED\Commands\Do.cs" />
     <Compile Include="EXILED\Commands\Me.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="EXILED\Config.cs" />
     <Compile Include="EXILED\EventHandlers.cs" />
     <Compile Include="EXILED\Plugin.cs" />
+    <Compile Include="EXILED\Translation.cs" />
     <Compile Include="Features\CommandInfo.cs" />
     <Compile Include="NWAPI\API.cs" />
     <Compile Include="NWAPI\Commands\Do.cs" />

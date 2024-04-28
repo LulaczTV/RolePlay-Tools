@@ -6,7 +6,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Roles;
 using UnityEngine;
 
-namespace RolePlay_Tools.Commands
+namespace RolePlay_Tools.EXILED.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Me : ICommand

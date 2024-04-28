@@ -3,9 +3,9 @@ using System;
 using System.IO;
 using Exiled.API.Features;
 
-namespace RolePlay_Tools
+namespace RolePlay_Tools.EXILED
 {
-    public class Plugin : Plugin<Config>
+    public class Plugin : Plugin<Config, Translation>
     {
 
         public static Plugin Instance;

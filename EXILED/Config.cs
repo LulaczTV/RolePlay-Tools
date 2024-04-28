@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace RolePlay_Tools
+namespace RolePlay_Tools.EXILED
 {
     public class Config : IConfig
     {
@@ -22,8 +22,6 @@ namespace RolePlay_Tools
         public int TryCommandPosition { get; set; } = 300;
         [Description("Hud position of me,do,ooc commands")]
         public int OtherCommandsPosition { get; set; } = 450;
-        [Description("Command Cooldown message. Placeholders: [%time%]")]
-        public string CommandCooldownMsg { get; set; } = "You need to wait %time% to use command again";
         public CommandInfo MeCommand { get; set; } = new CommandInfo()
         {
             IsEnabled = true,
@@ -89,6 +87,21 @@ namespace RolePlay_Tools
             IsEnabled = true,
             HintDuration = 5f,
             MaxLenght = 256,
+            CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
+            {
+                InitialTime = 5,
+                NextUse = 5,
+                Remaining = 5,
+            }
+        };
+
+        public CommandInfo PushCommand { get; set; } = new CommandInfo()
+        {
+            IsEnabled = true,
+            CommandOutputName = "push",
+            CommandRadius = 50f,
+            HintDuration = 5f,
+            HintColor = "red",
             CommandCooldown = new PlayerRoles.Subroutines.AbilityCooldown()
             {
                 InitialTime = 5,

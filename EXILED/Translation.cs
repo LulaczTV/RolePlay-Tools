@@ -18,5 +18,9 @@ namespace RolePlay_Tools.EXILED
         public string TryCmdSuccesHint { get; set; } = "<color=%color%><b>%player%</b>:</color> .%outputname% %hint%\n<color=red>Successfully!</color>";
         [Description("Try hint succesfull message. Placeholders: [%color%, %player%, %outputname%, %hint%]")]
         public string TryCmdFailureHint { get; set; } = "<color=%color%><b>%player%</b>:</color> .%outputname% %hint%\n<color=red>Unsuccessfully!</color>";
+        [Description("Push command hint for victim. Placeholders: [%attacker%, %rolecolor%]")]
+        public string PushCmdHintVictim { get; set; } = "You have been pushed by <color=%rolecolor%>%attacker%</color>!";
+        [Description("Push command hint for attacker. Placeholders: [%victim%, %rolecolor%]")]
+        public string PushCmdHintAttacker { get; set; } = "You pushed <color=%rolecolor%>%victim%</color>!";
     }
 }

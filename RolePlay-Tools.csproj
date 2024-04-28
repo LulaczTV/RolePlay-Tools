@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="EXILED\API.cs" />
     <Compile Include="EXILED\Commands\Push.cs" />
+    <Compile Include="EXILED\Commands\Steal.cs" />
     <Compile Include="EXILED\Commands\Toggle.cs" />
     <Compile Include="EXILED\Commands\Do.cs" />
     <Compile Include="EXILED\Commands\Me.cs" />

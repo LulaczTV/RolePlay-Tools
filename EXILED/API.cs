@@ -17,17 +17,12 @@ namespace RolePlay_Tools.EXILED
 {
     public class API
     {
+        private Dictionary<Player, DateTime> CommandCooldown = new();
         public Queue<HintQueueItem> TryHintQueue, OtherHintQueue = new();
         private CoroutineHandle tryCor, otherCor;
 
         public void ShowHint(Player player, string hintText, CommandInfo commandInfo)
         {
-            if (!commandInfo.CommandCooldown.IsReady)
-            {
-                player.SendConsoleMessage(Plugin.Instance.Translation.CooldownMsg.Replace("%time%", commandInfo.CommandCooldown.Remaining.ToString()), Plugin.Instance.Translation.CooldownMsgColor);
-                return;
-            }
-
             //gets player list of players near command sender
             List<Player> players = Player.List
                 .Where(ply => UnityEngine.Vector3.Distance(player.Position, ply.Position) <= commandInfo.CommandRadius && !Plugin.Instance.eventHandlers.PlayerHintsDisabled.Contains(ply))
@@ -99,6 +94,27 @@ namespace RolePlay_Tools.EXILED
             string outputText = Regex.Replace(hintText, pattern, string.Empty);
 
             return outputText;
+        }
+
+        internal bool CheckCooldown(Player player)
+        {
+            if (!CommandCooldown.ContainsKey(player))
+            {
+                CommandCooldown.Add(player, DateTime.Now);
+                return true;
+            }
+            else
+            {
+                DateTime cooldownTime = CommandCooldown[player] + TimeSpan.FromSeconds(Plugin.Instance.Config.CommandCooldown);
+
+                if (DateTime.Now < cooldownTime)
+                {
+                    player.SendConsoleMessage(Plugin.Instance.Translation.CooldownMsg.Replace("%time%", Math.Round((cooldownTime - DateTime.Now).TotalSeconds, 2).ToString()), Plugin.Instance.Translation.CooldownMsgColor);
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private IEnumerator<float> DisplayTryHintQueue(Queue<HintQueueItem> hintQueue)

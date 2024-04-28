@@ -44,6 +44,13 @@ namespace RolePlay_Tools.EXILED.Commands
                 response = "U can't use that command as SCP-079 or spectator!";
                 return false;
             }
+
+            if (!Plugin.Instance.API.CheckCooldown(player))
+            {
+                response = "";
+                return false;
+            }
+
             if (arguments.Count == 0)
             {
                 response = $"Use: .title <text>";

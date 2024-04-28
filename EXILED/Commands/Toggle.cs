@@ -24,7 +24,13 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-            if(!Plugin.Instance.eventHandlers.PlayerHintsDisabled.Contains(player))
+            if (!Plugin.Instance.API.CheckCooldown(player))
+            {
+                response = "";
+                return false;
+            }
+
+            if (!Plugin.Instance.eventHandlers.PlayerHintsDisabled.Contains(player))
             {
                 Plugin.Instance.eventHandlers.PlayerHintsDisabled.Add(player);
                 response = "<color=red>Disabled</color> hints for you!";

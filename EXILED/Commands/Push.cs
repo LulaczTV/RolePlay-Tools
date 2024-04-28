@@ -49,6 +49,12 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
+            if (!Plugin.Instance.API.CheckCooldown(player))
+            {
+                response = "";
+                return false;
+            }
+
             var ray = new Ray(player.CameraTransform.position + (player.CameraTransform.forward * 0.1f), player.CameraTransform.forward);
 
 
@@ -73,19 +79,16 @@ namespace RolePlay_Tools.EXILED.Commands
 
             Timing.RunCoroutine(PushPlayer(player, victim));
 
-            Plugin.Instance.API.ShowHint(victim, "");
-
-            victim.ShowHint("\n" + Plugin.Instance.Config.PushHintVictim.Replace("{player}", Instigator.DisplayNickname).Replace("{rolecolor}", Instigator.Role.Color.ToHex()));
-            Instigator.ShowHint("\n" + Plugin.Instance.Config.PushHintInstigator.Replace("{player}", Victim.DisplayNickname).Replace("{rolecolor}", Victim.Role.Color.ToHex()));
-
+            Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.PushCmdHintVictim.Replace("%attacker%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), Plugin.Instance.Config.PushCommand);
+            Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.PushCmdHintAttacker.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.PushCommand);
 
             response = "";
             return true;
         }
-        private IEnumerator<float> PushPlayer(Exiled.API.Features.Player Instigator, Exiled.API.Features.Player Victim)
+        private IEnumerator<float> PushPlayer(Player player, Player victim)
         {
-            Vector3 pushed = Instigator.CameraTransform.forward * Plugin.Instance.Config.PushForce;
-            Vector3 endPos = Victim.Position + new Vector3(pushed.x, 0, pushed.z);
+            Vector3 pushed = player.CameraTransform.forward * Plugin.Instance.Config.PushForce;
+            Vector3 endPos = victim.Position + new Vector3(pushed.x, 0, pushed.z);
             int layerAsLayerMask = 0;
             for (int x = 1; x < 8; x++)
                 layerAsLayerMask |= (1 << x);
@@ -95,12 +98,12 @@ namespace RolePlay_Tools.EXILED.Commands
                 float movementAmount = Plugin.Instance.Config.PushForce / Plugin.Instance.Config.Iterations;
 
 
-                Vector3 newPos = Vector3.MoveTowards(Victim.Position, endPos, movementAmount);
+                Vector3 newPos = Vector3.MoveTowards(victim.Position, endPos, movementAmount);
 
-                if (Physics.Linecast(Victim.Position, newPos, layerAsLayerMask))
+                if (Physics.Linecast(victim.Position, newPos, layerAsLayerMask))
                     yield break;
 
-                Victim.Position = newPos;
+                victim.Position = newPos;
 
 
                 yield return Timing.WaitForOneFrame;

@@ -21,6 +21,8 @@ namespace RolePlay_Tools.EXILED.Commands
 
         public string Description => "pushes someone in front of you.";
 
+        private Dictionary<Player, DateTime> Cooldown = new();
+
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!Plugin.Instance.Config.PushCommand.IsEnabled)
@@ -49,7 +51,7 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-            if (!Plugin.Instance.API.CheckCooldown(player))
+            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Push))
             {
                 response = "";
                 return false;

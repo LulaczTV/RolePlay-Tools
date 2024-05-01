@@ -22,7 +22,6 @@ namespace RolePlay_Tools.EXILED
         public int TryCommandPosition { get; set; } = 300;
         [Description("Hud position of me,do,ooc commands")]
         public int OtherCommandsPosition { get; set; } = 450;
-        public float CommandCooldown { get; set; } = 5f;
         public CommandInfo MeCommand { get; set; } = new CommandInfo()
         {
             IsEnabled = true,
@@ -86,6 +85,7 @@ namespace RolePlay_Tools.EXILED
             HintDuration = 5f,
             HintColor = "red",
         };
+        public float StealChance { get; set; } = 30f;
         [Description("Stamina loss on jump [Stamina level is between 0 and 1]")]
         public float StaminaJumpLoss { get; set; } = 0.1f;
         [Description("How many HP will be removed after depleting stamina")]

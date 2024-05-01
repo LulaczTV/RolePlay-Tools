@@ -133,20 +133,11 @@
     <Compile Include="EXILED\Commands\Title.cs" />
     <Compile Include="EXILED\Commands\Try.cs" />
     <Compile Include="EXILED\Config.cs" />
+    <Compile Include="Enums\CommandType.cs" />
     <Compile Include="EXILED\EventHandlers.cs" />
     <Compile Include="EXILED\Plugin.cs" />
     <Compile Include="EXILED\Translation.cs" />
     <Compile Include="Features\CommandInfo.cs" />
-    <Compile Include="NWAPI\API.cs" />
-    <Compile Include="NWAPI\Commands\Do.cs" />
-    <Compile Include="NWAPI\Commands\Me.cs" />
-    <Compile Include="NWAPI\Commands\Ooc.cs" />
-    <Compile Include="NWAPI\Commands\Title.cs" />
-    <Compile Include="NWAPI\Commands\Toggle.cs" />
-    <Compile Include="NWAPI\Commands\Try.cs" />
-    <Compile Include="NWAPI\Config.cs" />
-    <Compile Include="NWAPI\EventHandlers.cs" />
-    <Compile Include="NWAPI\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

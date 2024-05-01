@@ -22,5 +22,19 @@ namespace RolePlay_Tools.EXILED
         public string PushCmdHintVictim { get; set; } = "You have been pushed by <color=%rolecolor%>%attacker%</color>!";
         [Description("Push command hint for attacker. Placeholders: [%victim%, %rolecolor%]")]
         public string PushCmdHintAttacker { get; set; } = "You pushed <color=%rolecolor%>%victim%</color>!";
+        [Description("Shows when player who tries stealing is cuffed")]
+        public string StealCmdCuffedHint { get; set; } = "You can't steal anything because you're cuffed!";
+        [Description("Shows when victim has empty inventory. Placeholders: [%player%, %rolecolor%]")]
+        public string StealCmdEmptyHint { get; set; } = "<color=%rolecolor%>%player%</color> inventory is empty!";
+        [Description("Shows when thief has full inventory.")]
+        public string StealCmdFullHint { get; set; } = "Your inventory is full!";
+        [Description("Shows to victim when thief failed stealing an item. Placeholders: [%thief%, %rolecolor%]")]
+        public string StealFailVictimHint { get; set; } = "<color=%rolecolor%>%thief%</color> tried to rob you but failed!";
+        [Description("Shows to thief when he failed stealing an item. Placeholders: [%victim%, %rolecolor%]")]
+        public string StealFailThiefHint { get; set; } = "You failed robbing <color=%rolecolor%>%victim%</color>!";
+        [Description("Shows to victim when he gets robbed by someone. Placeholders: [%thief%, %rolecolor%]")]
+        public string StealSuccessVictimHint { get; set; } = "You've been robbed by <color=%rolecolor%>%thief%</color>!";
+        [Description("Shows to victim when he gets robbed by someone. Placeholders: [%victim%, %rolecolor%]")]
+        public string StealSuccessThiefHint { get; set; } = "You have successfully robbed <color=%rolecolor%>%victim%</color>!";
     }
 }

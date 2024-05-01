@@ -1,5 +1,6 @@
 ﻿#if EXILED
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using CommandSystem;
@@ -16,6 +17,8 @@ namespace RolePlay_Tools.EXILED.Commands
         public string[] Aliases => new string[] { "title", "description", "desc" };
 
         public string Description => "Allows players to give their character a title or role, expressing their character's position or status in the fictional world.";
+
+        private Dictionary<Player, DateTime> Cooldown = new();
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -45,7 +48,7 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-            if (!Plugin.Instance.API.CheckCooldown(player))
+            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Title))
             {
                 response = "";
                 return false;

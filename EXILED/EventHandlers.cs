@@ -20,7 +20,7 @@ namespace RolePlay_Tools.EXILED
 {
     public class EventHandlers
     {
-        public List<Player> PlayerHintsDisabled { get; set; } = new List<Player>();
+        public List<Player> PlayerHintsDisabled { get; set; } = new();
 
         public void OnRoundEnded(RoundEndedEventArgs ev)
         {
@@ -63,19 +63,12 @@ namespace RolePlay_Tools.EXILED
 
         public void OnJumping(JumpingEventArgs ev)
         {
-            if (!Plugin.Instance.Config.IsStaminaLossEnabled)
-            {
-                return;
-            }
+            if (!Plugin.Instance.Config.IsStaminaLossEnabled) return;
 
             if (ev.Player.Stamina < Plugin.Instance.Config.StaminaJumpLoss)
-            {
                 ev.IsAllowed = false;
-            }
             else
-            {
                 ev.Player.Stamina -= Plugin.Instance.Config.StaminaJumpLoss;
-            }
         }
 
         public void OnChangingMoveState(ChangingMoveStateEventArgs ev)

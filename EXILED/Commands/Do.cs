@@ -1,5 +1,6 @@
 ﻿#if EXILED
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
@@ -16,6 +17,8 @@ namespace RolePlay_Tools.EXILED.Commands
         public string[] Aliases => new string[] { "do" };
 
         public string Description => "Enables players to precisely describe the environment or objects that are part of a scene, facilitating interaction between characters.";
+
+        private Dictionary<Player, DateTime> Cooldown = new();
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -46,7 +49,7 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-            if (!Plugin.Instance.API.CheckCooldown(player))
+            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Do))
             {
                 response = "";
                 return false;

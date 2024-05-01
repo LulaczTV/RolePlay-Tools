@@ -1,4 +1,5 @@
 ﻿using CommandSystem;
+using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Roles;
 using InventorySystem;
@@ -21,6 +22,8 @@ namespace RolePlay_Tools.EXILED.Commands
         public string[] Aliases => new string[] { "steal" };
 
         public string Description => "has a chance of stealing an item from someone infront of you";
+
+        private Dictionary<Player, DateTime> Cooldown = new();
 
         public System.Random rnd = new System.Random();
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -51,7 +54,7 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-            if (!Plugin.Instance.API.CheckCooldown(player))
+            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Steal))
             {
                 response = "";
                 return false;
@@ -59,8 +62,8 @@ namespace RolePlay_Tools.EXILED.Commands
 
             if (player.IsCuffed)
             {
-                player.ShowHint("\n" + Plugin.Instance.Config.CuffedHintText);
-                response = Plugin.Instance.Config.CuffedHintText;
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdCuffedHint, Plugin.Instance.Config.StealCommand);
+                response = Plugin.Instance.Translation.StealCmdCuffedHint;
                 return false;
             }
 
@@ -73,18 +76,20 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-
             var Victim = Player.Get(hit.collider);
+
             if (Victim == null)
             {
                 response = "";
                 return false;
             }
+
             if (Victim == player)
             {
                 response = "";
                 return false;
             }
+
             if (Victim.IsScp)
             {
                 response = "";
@@ -97,29 +102,32 @@ namespace RolePlay_Tools.EXILED.Commands
             return true;
         }
 
-        private void StealFromPlayer(Player Instigator, Player Victim)
+        private void StealFromPlayer(Player player, Player victim)
         {
-            if (Victim.Inventory.UserInventory.Items.Count <= 0)
+            if (victim.IsInventoryEmpty)
             {
-                Instigator.ShowHint("\n" + Plugin.Instance.Config.StealEmptyInventoryHint.Replace("{player}", Victim.DisplayNickname).Replace("{rolecolor}", Victim.Role.Color.ToHex()), duration: Plugin.Instance.Config.StealHintDuration);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdEmptyHint.Replace("%player%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
                 return;
             }
-            if (rnd.NextDouble() > Plugin.Instance.Config.StealChance)
+            if (player.IsInventoryFull)
             {
-                Victim.ShowHint("\n" + Plugin.Instance.Config.StealFailHintVictim.Replace("{player}", Instigator.DisplayNickname).Replace("{rolecolor}", Instigator.Role.Color.ToHex()), duration: Plugin.Instance.Config.StealHintDuration);
-                Instigator.ShowHint("\n" + Plugin.Instance.Config.StealFailHintInstigator.Replace("{player}", Victim.DisplayNickname).Replace("{rolecolor}", Victim.Role.Color.ToHex()), duration: Plugin.Instance.Config.StealHintDuration);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdFullHint, Plugin.Instance.Config.StealCommand);
+                return;
+            }
+            if (rnd.Next(100) > Plugin.Instance.Config.StealChance)
+            {
+                Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.StealFailVictimHint.Replace("%thief%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealFailThiefHint.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
                 return;
             }
 
+            ItemType stoleItem = victim.Inventory.UserInventory.Items.Random().Value.ItemTypeId;
 
-            KeyValuePair<ushort, InventorySystem.Items.ItemBase> SelectedItem = Victim.Inventory.UserInventory.Items.GetRandomValue();
-            ItemType item = SelectedItem.Value.ItemTypeId;
-            Victim.Inventory.ServerRemoveItem(SelectedItem.Key, SelectedItem.Value.PickupDropModel);
-            Instigator.AddItem(item);
-            Victim.ShowHint("\n" + Plugin.Instance.Config.StealSuccessHintVictim.Replace("{player}", Instigator.DisplayNickname).Replace("{rolecolor}", Instigator.Role.Color.ToHex()).Replace("{item}", item.ToString()), duration: Plugin.Instance.Config.StealHintDuration);
-            Instigator.ShowHint("\n" + Plugin.Instance.Config.StealSuccessHintInstigator.Replace("{player}", Victim.DisplayNickname).Replace("{rolecolor}", Victim.Role.Color.ToHex()).Replace("{item}", item.ToString()), duration: Plugin.Instance.Config.StealHintDuration);
+            victim.RemoveItem(stoleItem);
+            player.AddItem(stoleItem);
 
-
+            Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.StealSuccessVictimHint.Replace("%thief%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
+            Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealSuccessThiefHint.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
         }
     }
 }

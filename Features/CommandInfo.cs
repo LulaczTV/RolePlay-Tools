@@ -22,13 +22,15 @@ namespace RolePlay_Tools.Features
         public string? HintColor { get; set; }
         [Description("Max length (characters) of the command text")]
         public int? MaxLenght { get; set; }
+        public float Cooldown { get; set; }
 
-        public CommandInfo(bool isEnabled = true, float? commandRadius = null, float? hintDuration = null, int? maxLenght = null)
+        public CommandInfo(bool isEnabled = true, float? commandRadius = null, float? hintDuration = null, int? maxLenght = null, float cooldown = 0)
         {
             IsEnabled = isEnabled;
             CommandRadius = commandRadius;
             HintDuration = hintDuration;
             MaxLenght = maxLenght;
+            Cooldown = cooldown;
         }
     }
 }

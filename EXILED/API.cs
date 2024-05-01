@@ -11,7 +11,7 @@ using MEC;
 using RolePlay_Tools.Features;
 using RueI.Parsing;
 using System.Text.RegularExpressions;
-using PlayerRoles.Subroutines;
+using RolePlay_Tools.Enums;
 
 namespace RolePlay_Tools.EXILED
 {
@@ -88,6 +88,10 @@ namespace RolePlay_Tools.EXILED
             return $"<color={commandInfo.HintColor}><b>{player.DisplayNickname}</b>:</color> .{commandInfo.CommandOutputName} {hintText}";
         }
 
+        /// <summary>
+        /// Removes unity tags from text
+        /// </summary>
+        /// <returns>Returns text without unity tags</returns>
         private static string RemoveUnityTags(string hintText)
         {
             string pattern = @"<[^>]+>";
@@ -96,22 +100,54 @@ namespace RolePlay_Tools.EXILED
             return outputText;
         }
 
-        internal bool CheckCooldown(Player player)
+        /// <summary>
+        /// Checks if a player can use the command again.
+        /// </summary>
+        /// <param name="cooldowns">A dictionary storing the times of the last command usage for each player.</param>
+        /// <param name="player">The player whose cooldown is to be checked.</param>
+        /// <param name="commandType">The type of command for which the cooldown is to be checked.</param>
+        /// <returns>Returns true if the player can use the command; otherwise, returns false.</returns>
+        internal bool CheckCooldown(Dictionary<Player, DateTime> cooldowns, Player player, CommandType commandType)
         {
-            if (!CommandCooldown.ContainsKey(player))
+            if (!cooldowns.TryGetValue(player, out DateTime lastCommandTime))
             {
-                CommandCooldown.Add(player, DateTime.Now);
+                cooldowns[player] = DateTime.Now;
                 return true;
             }
-            else
-            {
-                DateTime cooldownTime = CommandCooldown[player] + TimeSpan.FromSeconds(Plugin.Instance.Config.CommandCooldown);
 
-                if (DateTime.Now < cooldownTime)
-                {
-                    player.SendConsoleMessage(Plugin.Instance.Translation.CooldownMsg.Replace("%time%", Math.Round((cooldownTime - DateTime.Now).TotalSeconds, 2).ToString()), Plugin.Instance.Translation.CooldownMsgColor);
-                    return false;
-                }
+            TimeSpan cooldownTime;
+            switch (commandType)
+            {
+                case CommandType.Do:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.DoCommand.Cooldown);
+                    break;
+                case CommandType.Me:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.MeCommand.Cooldown);
+                    break;
+                case CommandType.Ooc:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.OocCommand.Cooldown);
+                    break;
+                case CommandType.Push:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.PushCommand.Cooldown);
+                    break;
+                case CommandType.Steal:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.StealCommand.Cooldown);
+                    break;
+                case CommandType.Title:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.TitleCommand.Cooldown);
+                    break;
+                case CommandType.Try:
+                    cooldownTime = TimeSpan.FromSeconds(Plugin.Instance.Config.TryCommand.Cooldown);
+                    break;
+                default:
+                    return true;
+            }
+
+            DateTime nextAllowedCommandTime = lastCommandTime + cooldownTime;
+            if (DateTime.Now < nextAllowedCommandTime)
+            {
+                player.SendConsoleMessage(Plugin.Instance.Translation.CooldownMsg.Replace("%time%", Math.Round((nextAllowedCommandTime - DateTime.Now).TotalSeconds, 2).ToString()), Plugin.Instance.Translation.CooldownMsgColor);
+                return false;
             }
 
             return true;

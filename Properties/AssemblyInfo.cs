@@ -1,20 +1,12 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-#if EXILED
-using RolePlay_Tools;
-#else
-using RolePlay_Tools_NW;
-#endif
+using RolePlay_Tools.EXILED;
 
 // Ogólne informacje o zestawie są kontrolowane poprzez następujący 
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
-#if EXILED
 [assembly: AssemblyTitle("RolePlay-Tools")]
-#else
-[assembly: AssemblyTitle("RolePlay-Tools-NW")]
-#endif
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("pan_andrzej")]

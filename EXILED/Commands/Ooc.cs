@@ -63,9 +63,9 @@ namespace RolePlay_Tools.EXILED.Commands
 
             string text = string.Join(" ", arguments.Select(arg => arg.Trim()));
 
-            if (Plugin.Instance.Config.DoCommand.MaxLenght > 0 && text.Length > Plugin.Instance.Config.OocCommand.MaxLenght)
+            if (Plugin.Instance.Config.OocCommand.MaxLenght > 0 && text.Length > Plugin.Instance.Config.OocCommand.MaxLenght)
             {
-                response = $"Your message is to long! You can use max of {Plugin.Instance.Config.OocCommand.MaxLenght} characters!";
+                response = $"Your message is too long! You can use max of {Plugin.Instance.Config.OocCommand.MaxLenght} characters!";
                 return false;
             }
 

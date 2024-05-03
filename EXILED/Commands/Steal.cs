@@ -62,7 +62,7 @@ namespace RolePlay_Tools.EXILED.Commands
 
             if (player.IsCuffed)
             {
-                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdCuffedHint, Plugin.Instance.Config.StealCommand);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdCuffedHint, (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
                 response = Plugin.Instance.Translation.StealCmdCuffedHint;
                 return false;
             }
@@ -70,7 +70,7 @@ namespace RolePlay_Tools.EXILED.Commands
             var ray = new Ray(player.CameraTransform.position + (player.CameraTransform.forward * 0.1f), player.CameraTransform.forward);
 
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, Plugin.Instance.Config.StealCommand.CommandRadius ?? 0))
+            if (!Physics.Raycast(ray, out RaycastHit hit, Plugin.Instance.Config.StealRange))
             {
                 response = "";
                 return false;
@@ -106,18 +106,18 @@ namespace RolePlay_Tools.EXILED.Commands
         {
             if (victim.IsInventoryEmpty)
             {
-                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdEmptyHint.Replace("%player%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdEmptyHint.Replace("%player%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
                 return;
             }
             if (player.IsInventoryFull)
             {
-                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdFullHint, Plugin.Instance.Config.StealCommand);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdFullHint, (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
                 return;
             }
             if (rnd.Next(100) > Plugin.Instance.Config.StealChance)
             {
-                Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.StealFailVictimHint.Replace("%thief%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
-                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealFailThiefHint.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
+                Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.StealFailVictimHint.Replace("%thief%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealFailThiefHint.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
                 return;
             }
 
@@ -126,8 +126,8 @@ namespace RolePlay_Tools.EXILED.Commands
             victim.RemoveItem(stoleItem);
             player.AddItem(stoleItem);
 
-            Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.StealSuccessVictimHint.Replace("%thief%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
-            Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealSuccessThiefHint.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.StealCommand);
+            Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.StealSuccessVictimHint.Replace("%thief%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
+            Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealSuccessThiefHint.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
         }
     }
 }

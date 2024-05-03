@@ -137,7 +137,9 @@
     <Compile Include="EXILED\EventHandlers.cs" />
     <Compile Include="EXILED\Plugin.cs" />
     <Compile Include="EXILED\Translation.cs" />
-    <Compile Include="Features\CommandInfo.cs" />
+    <Compile Include="Features\AdvancedCommandInfo.cs" />
+    <Compile Include="Features\BaseCommandInfo.cs" />
+    <Compile Include="Features\SimpleCommandInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

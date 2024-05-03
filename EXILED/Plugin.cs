@@ -17,7 +17,7 @@ namespace RolePlay_Tools.EXILED
         public override string Name => "PA-RolePlay Tools";
         public override string Author => "pan_andrzej";
         public override Version Version => new Version(PluginVersion);
-        public override Version RequiredExiledVersion => new Version(9, 0, 0);
+        public override Version RequiredExiledVersion => new Version(8, 8, 1);
 
         public override void OnEnabled()
         {

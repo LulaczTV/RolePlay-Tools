@@ -60,7 +60,7 @@ namespace RolePlay_Tools.EXILED.Commands
             var ray = new Ray(player.CameraTransform.position + (player.CameraTransform.forward * 0.1f), player.CameraTransform.forward);
 
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, Plugin.Instance.Config.PushCommand.CommandRadius ?? 0))
+            if (!Physics.Raycast(ray, out RaycastHit hit, Plugin.Instance.Config.PushRange))
             {
                 response = "";
                 return false;
@@ -81,8 +81,8 @@ namespace RolePlay_Tools.EXILED.Commands
 
             Timing.RunCoroutine(PushPlayer(player, victim));
 
-            Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.PushCmdHintVictim.Replace("%attacker%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), Plugin.Instance.Config.PushCommand);
-            Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.PushCmdHintAttacker.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), Plugin.Instance.Config.PushCommand);
+            Plugin.Instance.API.ShowHint(victim, Plugin.Instance.Translation.PushCmdHintVictim.Replace("%attacker%", player.DisplayNickname).Replace("%rolecolor%", player.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.PushCommand);
+            Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.PushCmdHintAttacker.Replace("%victim%", victim.DisplayNickname).Replace("%rolecolor%", victim.Role.Color.ToHex()), (Features.SimpleCommandInfo)Plugin.Instance.Config.PushCommand);
 
             response = "";
             return true;

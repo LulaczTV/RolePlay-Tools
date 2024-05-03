@@ -22,7 +22,7 @@ namespace RolePlay_Tools.EXILED
         public int TryCommandPosition { get; set; } = 300;
         [Description("Hud position of me,do,ooc commands")]
         public int OtherCommandsPosition { get; set; } = 450;
-        public CommandInfo MeCommand { get; set; } = new CommandInfo()
+        public AdvancedCommandInfo MeCommand { get; set; } = new AdvancedCommandInfo()
         {
             IsEnabled = true,
             CommandOutputName = "me",
@@ -30,8 +30,10 @@ namespace RolePlay_Tools.EXILED
             HintDuration = 5f,
             HintColor = "green",
             MaxLenght = 256,
+            Cooldown = 5f,
+            CommandType = Enums.CommandType.Me,
         };
-        public CommandInfo DoCommand { get; set; } = new CommandInfo()
+        public AdvancedCommandInfo DoCommand { get; set; } = new AdvancedCommandInfo()
         {
             IsEnabled = true,
             CommandOutputName = "do",
@@ -39,8 +41,10 @@ namespace RolePlay_Tools.EXILED
             HintDuration = 5f,
             HintColor = "#fd0000",
             MaxLenght= 256,
+            Cooldown = 5f,
+            CommandType = Enums.CommandType.Do,
         };
-        public CommandInfo OocCommand { get; set; } = new CommandInfo()
+        public AdvancedCommandInfo OocCommand { get; set; } = new AdvancedCommandInfo()
         {
             IsEnabled = true,
             CommandOutputName = "ooc",
@@ -48,8 +52,10 @@ namespace RolePlay_Tools.EXILED
             HintDuration = 5f,
             HintColor = "purple",
             MaxLenght = 256,
+            Cooldown = 5f,
+            CommandType= Enums.CommandType.Ooc,
         };
-        public CommandInfo TryCommand { get; set; } = new CommandInfo()
+        public AdvancedCommandInfo TryCommand { get; set; } = new AdvancedCommandInfo()
         {
             IsEnabled = true,
             CommandOutputName = "try",
@@ -57,34 +63,35 @@ namespace RolePlay_Tools.EXILED
             HintDuration = 5f,
             HintColor = "yellow",
             MaxLenght = 256,
+            Cooldown = 5f,
+            CommandType = Enums.CommandType.Try,
         };
-        public CommandInfo TitleCommand { get; set; } = new CommandInfo()
+        public SimpleCommandInfo TitleCommand { get; set; } = new SimpleCommandInfo()
         {
             IsEnabled = true,
-            HintDuration = 5f,
             MaxLenght = 256,
+            Cooldown = 30f,
+            CommandType = Enums.CommandType.Title,
         };
 
-        public CommandInfo PushCommand { get; set; } = new CommandInfo()
+        public BaseCommandInfo PushCommand { get; set; } = new BaseCommandInfo()
         {
             IsEnabled = true,
-            CommandOutputName = "push",
-            CommandRadius = 50f,
-            HintDuration = 5f,
-            HintColor = "red",
+            Cooldown = 60f,
+            CommandType = Enums.CommandType.Push,
         };
+        public float PushRange { get; set; } = 50f;
         [Description("How strong will you push someone")]
         public float PushForce { get; set; } = 1.7f;
         [Description("More iterations = more smoother push at cost of performance")]
         public int Iterations { get; set; } = 15;
-        public CommandInfo StealCommand { get; set; } = new CommandInfo()
+        public BaseCommandInfo StealCommand { get; set; } = new BaseCommandInfo()
         {
             IsEnabled = true,
-            CommandOutputName = "steal",
-            CommandRadius = 50f,
-            HintDuration = 5f,
-            HintColor = "red",
+            Cooldown = 120f,
+            CommandType = Enums.CommandType.Steal,
         };
+        public float StealRange { get; set; } = 50f;
         public float StealChance { get; set; } = 30f;
         [Description("Stamina loss on jump [Stamina level is between 0 and 1]")]
         public float StaminaJumpLoss { get; set; } = 0.1f;

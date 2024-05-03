@@ -17,37 +17,28 @@ namespace RolePlay_Tools.EXILED
 {
     public class API
     {
-        private Dictionary<Player, DateTime> CommandCooldown = new();
         public Queue<HintQueueItem> TryHintQueue, OtherHintQueue = new();
         private CoroutineHandle tryCor, otherCor;
 
-        public void ShowHint(Player player, string hintText, CommandInfo commandInfo)
+        public void ShowHint(Player player, string hintText, AdvancedCommandInfo commandInfo)
         {
-            //gets player list of players near command sender
             List<Player> players = Player.List
-                .Where(ply => UnityEngine.Vector3.Distance(player.Position, ply.Position) <= commandInfo.CommandRadius && !Plugin.Instance.eventHandlers.PlayerHintsDisabled.Contains(ply))
+                .Where(ply => UnityEngine.Vector3.Distance(player.Position, ply.Position) <= commandInfo.CommandRadius && !Plugin.Instance.eventHandlers.PlayerHintsDisabled
+                .Contains(ply))
                 .ToList();
-            //Display list of players displays
+
             List<Display> displays = new();
 
-            //gets hint message by filtering CommandInfo
             string hint = commandInfo == Plugin.Instance.Config.TryCommand
                 ? GetTryHint(player, RemoveUnityTags(hintText), commandInfo)
                 : GetOtherHint(player, RemoveUnityTags(hintText), commandInfo);
 
-            //gets element by filtering CommandInfo
             SetElement element = commandInfo == Plugin.Instance.Config.TryCommand
                 ? new(Plugin.Instance.Config.TryCommandPosition, hint)
                 : new(Plugin.Instance.Config.OtherCommandsPosition, hint);
 
-            //creates and saves to list players displays
             foreach (Player ply in players)
             {
-                if (Plugin.Instance.eventHandlers.PlayerHintsDisabled.Contains(ply))
-                {
-                    players.Remove(ply);
-                    return;
-                }
                 Display display = new(ply.ReferenceHub);
                 display.Elements.Add(element);
                 displays.Add(display);
@@ -69,10 +60,31 @@ namespace RolePlay_Tools.EXILED
             players.ForEach(ply => ply.SendConsoleMessage(hint, commandInfo.HintColor));
         }
 
+        public void ShowHint(Player player, string hintText, SimpleCommandInfo commandInfo)
+        {
+
+            List<Display> displays = new();
+
+            SetElement element = new(Plugin.Instance.Config.OtherCommandsPosition, hintText);
+
+            Display display = new(player.ReferenceHub);
+            display.Elements.Add(element);
+            displays.Add(display);
+
+            Queue<HintQueueItem> hintQueue = OtherHintQueue;
+
+            hintQueue.Enqueue(new HintQueueItem(displays, (AdvancedCommandInfo)commandInfo));
+
+            if (!Timing.IsRunning(otherCor))
+            {
+                otherCor = Timing.RunCoroutine(DisplayOtherHintQueue(OtherHintQueue));
+            }
+        }
+
         /// <summary>
         /// Gets hint message
         /// </summary>
-        private string GetTryHint(Player player, string hintText, CommandInfo commandInfo)
+        private string GetTryHint(Player player, string hintText, AdvancedCommandInfo commandInfo)
         {
             int rand = UnityEngine.Random.Range(0, 100);
             return rand <= 50
@@ -83,7 +95,7 @@ namespace RolePlay_Tools.EXILED
         /// <summary>
         /// Gets hint message
         /// </summary>
-        private string GetOtherHint(Player player, string hintText, CommandInfo commandInfo)
+        private string GetOtherHint(Player player, string hintText, AdvancedCommandInfo commandInfo)
         {
             return $"<color={commandInfo.HintColor}><b>{player.DisplayNickname}</b>:</color> .{commandInfo.CommandOutputName} {hintText}";
         }
@@ -163,7 +175,7 @@ namespace RolePlay_Tools.EXILED
                     display.Update();
                 }
 
-                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration ?? 0);
+                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration);
 
                 foreach(Display display in hintItem.Displays)
                 {
@@ -188,7 +200,7 @@ namespace RolePlay_Tools.EXILED
                     display.Update();
                 }
 
-                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration ?? 0);
+                yield return Timing.WaitForSeconds(hintItem.CommandInfo.HintDuration);
 
                 foreach (Display display in hintItem.Displays)
                 {
@@ -206,9 +218,9 @@ namespace RolePlay_Tools.EXILED
         public struct HintQueueItem
         {
             public List<Display> Displays;
-            public CommandInfo CommandInfo;
+            public AdvancedCommandInfo CommandInfo;
 
-            public HintQueueItem(List<Display> displays, CommandInfo commandInfo)
+            public HintQueueItem(List<Display> displays, AdvancedCommandInfo commandInfo)
             {
                 Displays = displays;
                 CommandInfo = commandInfo;

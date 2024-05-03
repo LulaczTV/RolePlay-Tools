@@ -73,6 +73,8 @@ namespace RolePlay_Tools.EXILED
 
         public void OnChangingMoveState(ChangingMoveStateEventArgs ev)
         {
+            if (!Plugin.Instance.Config.IsHPForStaminaEnabled) return;
+
             if (!(ev.Player.Stamina <= 0.025f)) return;
             ev.Player.Stamina = Convert.ToSingle(Plugin.Instance.Config.StaminaAdded);
             ev.Player.Health -= Plugin.Instance.Config.HpRemoved;

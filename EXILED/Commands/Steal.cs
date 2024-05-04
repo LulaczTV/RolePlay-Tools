@@ -55,16 +55,16 @@ namespace RolePlay_Tools.EXILED.Commands
                 return false;
             }
 
-            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Steal))
+            if (player.IsCuffed)
             {
-                response = "";
+                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.CuffedHint, (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
+                response = Plugin.Instance.Translation.CuffedHint;
                 return false;
             }
 
-            if (player.IsCuffed)
+            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Steal))
             {
-                Plugin.Instance.API.ShowHint(player, Plugin.Instance.Translation.StealCmdCuffedHint, (Features.SimpleCommandInfo)Plugin.Instance.Config.StealCommand);
-                response = Plugin.Instance.Translation.StealCmdCuffedHint;
+                response = "";
                 return false;
             }
 

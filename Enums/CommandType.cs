@@ -8,13 +8,15 @@ namespace RolePlay_Tools.Enums
 {
     public enum CommandType
     {
-        None = 0,
-        Do = 1,
-        Me = 2,
-        Ooc = 3,
-        Push = 4,
-        Steal = 5,
-        Title = 6,
-        Try = 7,
+        None,
+        Cuff,
+        Do,
+        Me,
+        Ooc,
+        Punch,
+        Push,
+        Steal,
+        Title,
+        Try,
     }
 }

@@ -124,6 +124,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EXILED\API.cs" />
+    <Compile Include="EXILED\Commands\Cuff.cs" />
+    <Compile Include="EXILED\Commands\Punch.cs" />
     <Compile Include="EXILED\Commands\Push.cs" />
     <Compile Include="EXILED\Commands\Steal.cs" />
     <Compile Include="EXILED\Commands\Toggle.cs" />

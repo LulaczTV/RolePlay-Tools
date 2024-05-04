@@ -74,6 +74,24 @@ namespace RolePlay_Tools.EXILED
             CommandType = Enums.CommandType.Title,
         };
 
+        public BaseCommandInfo PunchCommand { get; set; } = new BaseCommandInfo()
+        {
+            IsEnabled = true,
+            Cooldown = 60f,
+            CommandType = Enums.CommandType.Punch,
+        };
+        public float PunchRange { get; set; } = 50f;
+        public float PunchDamage { get; set; } = 2f;
+        public float PunchForce { get; set; } = 1.7f;
+
+        public BaseCommandInfo CuffCommand { get; set; } = new BaseCommandInfo()
+        {
+            IsEnabled = true,
+            Cooldown = 60f,
+            CommandType = Enums.CommandType.Cuff,
+        };
+        public float CuffRange { get; set; } = 50f;
+
         public BaseCommandInfo PushCommand { get; set; } = new BaseCommandInfo()
         {
             IsEnabled = true,

@@ -23,7 +23,7 @@ namespace RolePlay_Tools.EXILED
         [Description("Push command hint for attacker. Placeholders: [%victim%, %rolecolor%]")]
         public string PushCmdHintAttacker { get; set; } = "You pushed <color=%rolecolor%>%victim%</color>!";
         [Description("Shows when player who tries stealing is cuffed")]
-        public string StealCmdCuffedHint { get; set; } = "You can't steal anything because you're cuffed!";
+        public string CuffedHint { get; set; } = "You can't use that command because you're cuffed!";
         [Description("Shows when victim has empty inventory. Placeholders: [%player%, %rolecolor%]")]
         public string StealCmdEmptyHint { get; set; } = "<color=%rolecolor%>%player%</color> inventory is empty!";
         [Description("Shows when thief has full inventory.")]
@@ -36,5 +36,13 @@ namespace RolePlay_Tools.EXILED
         public string StealSuccessVictimHint { get; set; } = "You've been robbed by <color=%rolecolor%>%thief%</color>!";
         [Description("Shows to victim when he gets robbed by someone. Placeholders: [%victim%, %rolecolor%]")]
         public string StealSuccessThiefHint { get; set; } = "You have successfully robbed <color=%rolecolor%>%victim%</color>!";
+        [Description("In case of death of the victim, it will be shown as a death reason. Placeholders: [%player%]")]
+        public string PunchDeathMessage { get; set; } = "Punched to death by %player%";
+        [Description("Shows to victim when he gets punched by someone. Placeholders: [%player%, %rolecolor%]")]
+        public string PunchVictimHint { get; set; } = "You've been punched by <color=%rolecolor%>%player%</color>!";
+        [Description("Shows to player when he punched someone. Placeholders: [%victim%, %rolecolor%]")]
+        public string PunchPlayerHint { get; set; } = "You've punched <color=%rolecolor%>%victim%</color>!";
+        [Description("Shows to player when he tries to cuff someone. Placeholders: [%victim%, %rolecolor%]")]
+        public string CuffAlreadyCuffedHint { get; set; } = "<color=%rolecolor%>%victim%</color> is already cuffed!";
     }
 }

@@ -1,0 +1,78 @@
+﻿using CommandSystem;
+using Exiled.API.Features;
+using Exiled.API.Features.Roles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RolePlay_Tools_3._0.Commands
+{
+    [CommandHandler(typeof(ClientCommandHandler))]
+    public class Me : ICommand
+    {
+        public string Command => "rpme";
+
+        public string[] Aliases => new string[] { "me" };
+
+        public string Description => "Allows players to describe their actions or express emotions to add role-playing elements to interactions.";
+
+        private Dictionary<Player, DateTime> Cooldown = new();
+
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
+
+            if (!Plugin.Instance.Config.MeCommand.IsEnabled)
+            {
+                response = "Command is disabled by server owner!";
+                return false;
+            }
+
+            if (Round.IsLobby)
+            {
+                response = "You can't use this command in lobby!";
+                return false;
+            }
+
+            Player player = Player.Get(sender);
+
+            if (player == null)
+            {
+                response = "Error!";
+                return false;
+            }
+
+            if (player.Role is not FpcRole)
+            {
+                response = "You can't use this command as SCP-079 or spectator!";
+                return false;
+            }
+
+            if (!Plugin.Instance.API.CheckCooldown(Cooldown, player, Enums.CommandType.Me))
+            {
+                response = "";
+                return false;
+            }
+
+            if (arguments.Count == 0)
+            {
+                response = $"Use: .me <text>";
+                return false;
+            }
+
+            string text = string.Join(" ", arguments.Select(arg => arg.Trim()));
+
+            if (Plugin.Instance.Config.MeCommand.MaxLenght > 0 && text.Length > Plugin.Instance.Config.MeCommand.MaxLenght)
+            {
+                response = $"Your message is too long! You can use max of {Plugin.Instance.Config.MeCommand.MaxLenght} characters!";
+                return false;
+            }
+
+            Plugin.Instance.API.ShowHint(player, text, Plugin.Instance.Config.MeCommand);
+
+            response = "Command sent!";
+            return true;
+        }
+    }
+}

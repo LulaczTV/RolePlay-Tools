@@ -18,6 +18,7 @@ namespace RolePlay_Tools_3._0
         public override Version RequiredExiledVersion => new Version(9, 0, 0);
 
         public static Plugin Instance;
+        public API API;
         public EventHandlers EventHandlers;
 
         public string HintsFilePath;
@@ -30,6 +31,7 @@ namespace RolePlay_Tools_3._0
             Instance = this;
             Log.Debug("Registering Events...");
             EventHandlers = new EventHandlers();
+            API = new API();
             RegisterEvents();
             Log.Debug("Registered Events, setting paths...");
             SetPath();
@@ -51,11 +53,13 @@ namespace RolePlay_Tools_3._0
         private void RegisterEvents()
         {
             Exiled.Events.Handlers.Server.RoundEnded += EventHandlers.OnRoundEnded;
+            Exiled.Events.Handlers.Player.Verified += EventHandlers.OnVerified;
         }
 
         private void UnregisterEvents()
         {
             Exiled.Events.Handlers.Server.RoundEnded -= EventHandlers.OnRoundEnded;
+            Exiled.Events.Handlers.Player.Verified -= EventHandlers.OnVerified;
         }
 
         private void SetPath()

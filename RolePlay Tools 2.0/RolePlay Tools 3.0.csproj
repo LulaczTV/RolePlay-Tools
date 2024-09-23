@@ -29,10 +29,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\Desktop\EXILED\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\Desktop\EXILED\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-Publicized">
+      <HintPath>..\..\..\..\Desktop\EXILED\Assembly-CSharp-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Caress">
+      <HintPath>..\..\..\..\Desktop\EXILED\Caress.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandSystem.Core">
+      <HintPath>..\..\..\..\Desktop\EXILED\CommandSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.API">
       <HintPath>..\..\..\..\Desktop\EXILED\Exiled.API.dll</HintPath>
@@ -52,11 +65,17 @@
     <Reference Include="Exiled.Permissions">
       <HintPath>..\..\..\..\Desktop\EXILED\Exiled.Permissions.dll</HintPath>
     </Reference>
+    <Reference Include="Mirror-Publicized">
+      <HintPath>..\..\..\..\Desktop\EXILED\Mirror-Publicized.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Posix">
       <HintPath>..\..\..\..\Desktop\EXILED\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\Desktop\EXILED\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PluginAPI-Publicized">
+      <HintPath>..\..\..\..\Desktop\EXILED\PluginAPI-Publicized.dll</HintPath>
     </Reference>
     <Reference Include="SemanticVersioning">
       <HintPath>..\..\..\..\Desktop\EXILED\SemanticVersioning.dll</HintPath>
@@ -70,20 +89,33 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Desktop\EXILED\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Desktop\EXILED\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\Desktop\EXILED\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Desktop\EXILED\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
     <Reference Include="YamlDotNet">
       <HintPath>..\..\..\..\Desktop\EXILED\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
+    <Compile Include="Commands\Me.cs" />
     <Compile Include="Components\PlayerHintDisplay.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Enums\HintPosition.cs" />
+    <Compile Include="Enums\VerticalHintPosition.cs" />
     <Compile Include="EventHandlers.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
